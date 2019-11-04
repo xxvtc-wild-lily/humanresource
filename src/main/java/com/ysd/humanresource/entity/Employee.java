@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 @Data
-//员工表
 public class Employee {
+	
 	private Integer emp_id;
 	private String emp_fileNumber;
 	private String emp_name;
@@ -42,5 +42,5 @@ public class Employee {
 	private Integer emp_registrant;
 	private Integer pos_id;
 	private String emp_remarks;	
-
+	
 }

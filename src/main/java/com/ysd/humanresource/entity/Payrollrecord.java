@@ -7,24 +7,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 @Data
-//发薪记录表
 public class Payrollrecord {
-	private Integer pr_id;	//发薪记录id
-	private String pr_paySlipNumber;	//薪酬单编号
-	private String pr_fileNumber;	//档案编号
-	private String emp_name;	//员工姓名
-	private String pr_registrant;	//登记人
+	
+	private Integer pr_id;
+	private String pr_paySlipNumber;
+	private String pr_fileNumber;
+	private String emp_name;
+	private String pr_registrant;
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
-	private Date pr_registrationTime;	//登记时间
-	private BigDecimal pr_baseSalary;	//基本薪酬
-	private BigDecimal pr_trafficSubsidy;	//交通补贴
-	private BigDecimal pr_communicationSubsidy;	//通讯补贴
-	private BigDecimal pr_floatingWages;	//浮动工资
-	private BigDecimal pr_routine;	//常规
-	private BigDecimal pr_lunchAllowance;	//午餐补助
-	private BigDecimal pr_vehicleSubsidy;	//车补
-	private BigDecimal pr_rewardAmount;	//奖励金额
-	private BigDecimal pr_amountPayable;	//应扣金额
-	private String pr_payrollRemarks;	//发薪备注
-
+	private Date pr_registrationTime;
+	private BigDecimal pr_baseSalary;
+	private BigDecimal pr_trafficSubsidy;
+	private BigDecimal pr_communicationSubsidy;
+	private BigDecimal pr_floatingWages;
+	private BigDecimal pr_routine;
+	private BigDecimal pr_lunchAllowance;
+	private BigDecimal pr_vehicleSubsidy;
+	private BigDecimal pr_rewardAmount;
+	private BigDecimal pr_amountPayable;
+	private String pr_payrollRemarks;
+	
 }

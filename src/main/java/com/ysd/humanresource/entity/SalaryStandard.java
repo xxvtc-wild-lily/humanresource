@@ -7,25 +7,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 @Data
-//薪酬标准表
 public class SalaryStandard {
-	private Integer ss_id;	//薪酬id
-	private String ss_name;	//薪酬标准名称
-	private String ss_enactingPerson;	//制定人
-	private String ss_registrant;	//登记人
+	
+	private Integer ss_id;
+	private String ss_name;
+	private String ss_enactingPerson;
+	private String ss_registrant;
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
-	private Date ss_registrationTime;	//登记时间
-	private String ss_reviewer;	//复核人
+	private Date ss_registrationTime;
+	private String ss_reviewer;
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
-	private Date ss_reviewTime;	//复核时间
-	private Integer ss_auditStatus;	//审核状态
-	private String ss_auditOpinion;	//审核意见
-	private BigDecimal ss_baseSalary;	//基本薪酬
-	private BigDecimal ss_trafficSubsidy;	//交通补贴
-	private BigDecimal ss_communicationSubsidy;	//通讯补贴
-	private BigDecimal ss_floatingWages;	//浮动工资
-	private BigDecimal ss_routine;	//常规
-	private BigDecimal ss_lunchAllowance;	//午餐补助
-	private BigDecimal ss_vehicleSubsidy;	//车补
-
+	private Date ss_reviewTime;
+	private Integer ss_auditStatus;
+	private String ss_auditOpinion;
+	private BigDecimal ss_baseSalary;
+	private BigDecimal ss_trafficSubsidy;
+	private BigDecimal ss_communicationSubsidy;
+	private BigDecimal ss_floatingWages;
+	private BigDecimal ss_routine;
+	private BigDecimal ss_lunchAllowance;
+	private BigDecimal ss_vehicleSubsidy;
+	
 }
