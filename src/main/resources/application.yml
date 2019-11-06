@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/humanresource?characterEncoding=utf-8
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+    
+mybatis:
+  type-aliases-package: com.ysd.humanresource.entity
+  mapper-locations:
+  - classpath:mapper/*.xml
+
+server:
+  port: 8080
+  servlet:
+    context-path: /humanresource
