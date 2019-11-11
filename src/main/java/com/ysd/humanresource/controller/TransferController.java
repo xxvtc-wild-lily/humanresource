@@ -16,7 +16,6 @@ public class TransferController {
 	@PostMapping("/selectByStatus")
 	public List<Account> selectByStatus(Account account){
 		List<Account> list=transferService.selectByStatus(account);
-		
 		return list;
 	}
 }

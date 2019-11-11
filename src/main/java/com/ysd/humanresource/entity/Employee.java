@@ -43,4 +43,5 @@ public class Employee {
 	private Integer pos_id;
 	private String emp_remarks;	
 	
+	private Position position;
 }

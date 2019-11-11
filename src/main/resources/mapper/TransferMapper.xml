@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ysd.humanresource.dao.TransferMapper">
-	<select id="selectByStatus" resultType="Account">
+	<resultMap type="account" id="accountMap">
+		<id column="Acc_id" property="Acc_id"/>
+		<result column="Acc_telPhone" property="Acc_telPhone"/>
+		<result column="Acc_email" property="Acc_email"/>
+		<result column="Acc_password" property="Acc_password"/>
+		<result column="Acc_salt" property="Acc_salt"/>
+		<result column="Acc_salt" property="Acc_salt"/>
+		<result column="Acc_lockStatus" property="Acc_lockStatus"/>
+		<result column="Acc_lockTime" property="Acc_lockTime"/>
+		<association property="employee" javaType="com.ysd.humanresource.entity.Employee">
+			<id column="emp_id" property="emp_id"/>
+			<result column="emp_name" property="emp_name"/>
+			<association property="position" javaType="com.ysd.humanresource.entity.Position">
+				<id column="pos_id" property="pos_id"/>
+				<result column="pos_name" property="pos_name"/>
+			</association>
+		</association>
+	</resultMap>
+	<select id="selectByStatus" parameterType="Account" resultMap="accountMap">
 		select e.emp_name,d.dep_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
-			from account a left join employee e 
+			from employee e left join account a 
 			on a.emp_id=e.emp_id left join position p
 			on e.pos_id=p.pos_id left join department d
 			on p.dep_id=d.dep_id 
-			where a.acc_lockStatus=#{acc_lockStatus}
+			<!-- where a.acc_lockStatus=#{acc_lockStatus} -->
 	</select>
 	
 </mapper>

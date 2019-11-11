@@ -19,4 +19,7 @@ public class Account {
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
 	private Date Acc_lockTime;
 	
+	private Employee employee;
+	
+	
 }
