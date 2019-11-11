@@ -18,12 +18,12 @@ public class SalaryStandard {
 	private String ss_reviewer;
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
 	private Date ss_reviewTime;
-	private Integer ss_auditStatus;
-	private String ss_auditOpinion;
+	private Integer ss_aduitStatus;
+	private String ss_aduitOpinion;
 	private BigDecimal ss_baseSalary;
 	private BigDecimal ss_trafficSubsidy;
 	private BigDecimal ss_communicationSubsidy;
-	private BigDecimal ss_floatingWages;
+	private BigDecimal ss_floatWages;
 	private BigDecimal ss_routine;
 	private BigDecimal ss_lunchAllowance;
 	private BigDecimal ss_vehicleSubsidy;

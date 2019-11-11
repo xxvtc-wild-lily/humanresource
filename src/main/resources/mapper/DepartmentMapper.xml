@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ysd.humanresource.dao.DepartmentMapper">
+    
+	<resultMap type="department" id="departmentpos">
+		<id column="dep_id" property="dep_id"/>
+		<result column="dep_name" property="dep_name"/>
+		<result column="dep_lastPayday" property="dep_lastPayday"/>
+		<result column="dep_salaryStatus" property="dep_salaryStatus"/>
+		<result column="pos_id" property="position.pos_id"/>
+		<result column="pos_name" property="position.pos_name"/>
+	</resultMap>
+	<select id="selectDepAll" resultMap="departmentpos">
+		select de.dep_id,dep_name FROM department as de
+	</select>
+	<select id="selectPosByDepId" parameterType="department" resultMap="departmentpos">
+		select po.pos_id,po.pos_name FROM position as po WHERE po.dep_id=#{dep_id}
+	</select>
+</mapper>

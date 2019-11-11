@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ysd.humanresource.dao.SalaryStandardMapper">
     
-    
+    <insert id="insertSalaryStandard" parameterType="salaryStandard">
+        insert into salarystandard(ss_name,ss_enactingPerson,ss_registrant,ss_registrationTime,ss_aduitStatus,ss_baseSalary,ss_trafficSubsidy,
+                           ss_communicationSubsidy,ss_floatWages,ss_routine,ss_lunchAllowance,ss_vehicleSubsidy)
+        values(#{ss_name},#{ss_enactingPerson},#{ss_registrant},now(),#{ss_aduitStatus},#{ss_baseSalary},#{ss_trafficSubsidy},#{ss_communicationSubsidy},
+               #{ss_floatWages},#{ss_routine},#{ss_lunchAllowance},#{ss_vehicleSubsidy})
+    </insert>
     
 </mapper>
