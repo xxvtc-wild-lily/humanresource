@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ysd.humanresource.dao.RecrultmentinfoMapper">
+	<insert id="addRecrultmentinfo" parameterType="recruItmentinfo">
+		insert into recruitmentinfo (ri_recruitmentType,ri_department,ri_position,ri_recruitingNumber,ri_closingDate,ri_registrant,ri_registrationTime,ri_jobDescription,ri_recruitmentRequirements) 
+		values (#{ri_recruitmentType},#{ri_department},#{ri_positon},#{ri_recruitingNumber},#{ri_closingDate},#{ri_registrant},#{ri_registrationTime},#{ri_jobDescription},#{ri_recruitmentRequirements})
+	</insert>
+</mapper>
