@@ -16,7 +16,4 @@
 	<select id="selectDepAll" resultMap="departmentpos">
 		select de.dep_id,dep_name FROM department as de
 	</select>
-	<select id="selectPosByDepId" parameterType="department" resultMap="departmentpos">
-		select po.pos_id,po.pos_name FROM position as po WHERE po.dep_id=#{dep_id}
-	</select>
 </mapper>

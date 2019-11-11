@@ -3,6 +3,7 @@ package com.ysd.humanresource.service;
 import java.util.List;
 
 import com.ysd.humanresource.entity.Department;
+import com.ysd.humanresource.entity.Position;
 
 public interface DepartmentService {
 	/**
@@ -10,10 +11,4 @@ public interface DepartmentService {
 	 * @return
 	 */
 	public List<Department> selectDepAll();
-	/**
-	 * 根据部门查询职位
-	 * @param dep_id
-	 * @return
-	 */
-	public List<Department> selectPosByDepid(Department de);
 }
