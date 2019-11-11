@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.TransferMapper">
+	<select id="selectByStatus" resultType="Account">
+		select e.emp_name,d.dep_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
+			from account a left join employee e 
+			on a.emp_id=e.emp_id left join position p
+			on e.pos_id=p.pos_id left join department d
+			on p.dep_id=d.dep_id 
+			where a.acc_lockStatus=#{acc_lockStatus}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

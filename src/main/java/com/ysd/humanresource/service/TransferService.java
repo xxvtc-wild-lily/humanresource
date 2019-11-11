@@ -1,5 +1,9 @@
 package com.ysd.humanresource.service;
 
-public interface TransferService {
+import java.util.List;
 
+import com.ysd.humanresource.entity.Account;
+
+public interface TransferService {
+	List<Account> selectByStatus(Account account);
 }
