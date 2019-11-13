@@ -16,10 +16,13 @@ public class Account {
 	private String Acc_salt;
 	private Integer Acc_passwordWrongTimes;
 	private Integer Acc_lockStatus;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date Acc_lockTime;
 	
 	private Employee employee;
+	private String emp_fileNumber;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date emp_registrantTime;
 	
 	
 }

@@ -16,6 +16,7 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public List<Account> selectByStatus(Account account) {
 		// TODO Auto-generated method stub
-		return transferMapper.selectByStatus(account);
+		List<Account> selectByStatus = transferMapper.selectByStatus(account);
+		return selectByStatus;
 	}
 }

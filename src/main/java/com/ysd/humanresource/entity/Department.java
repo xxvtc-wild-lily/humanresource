@@ -10,7 +10,7 @@ public class Department {
 	
 	private Integer dep_id;
 	private String dep_name;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dep_lastPayday;
 	private Integer dep_salaryStatus;
 	private Position position;

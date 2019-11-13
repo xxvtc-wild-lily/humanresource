@@ -18,11 +18,11 @@ public class TransFerrecord {
 	private String tf_newPosition;
 	private String tf_newSalaryStandard;
 	private String tf_registrant;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date tf_registrationTime;
 	private String tf_mobilizingReason;
 	private String tf_auditor;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date tf_auditTime;
 	private String tf_auditOpinion;
 	private Integer tf_auditStatus;
