@@ -20,7 +20,7 @@ public class Employee {
 	private String emp_nationality;	
 	private String emp_birthAddress;	
 	private Integer emp_age;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date emp_birthday;
 	private String emp_nation;	
 	private String emp_faith;	
@@ -33,7 +33,7 @@ public class Employee {
 	private String emp_major;	
 	private String emp_openingBank;	
 	private String emp_bankAccount;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date emp_registrantTime;
 	private String emp_speciality;	
 	private String emp_hobby;	
@@ -43,4 +43,5 @@ public class Employee {
 	private Integer pos_id;
 	private String emp_remarks;	
 	
+	private Position position;
 }

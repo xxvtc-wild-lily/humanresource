@@ -8,5 +8,5 @@ public class Position {
 	private Integer dep_id;
 	private Integer ss_id;
 	private String pos_name;
-
+	private Department department;
 }

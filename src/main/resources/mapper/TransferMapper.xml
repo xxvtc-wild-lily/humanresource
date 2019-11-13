@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.TransferMapper">
+	<resultMap type="account" id="accountMap">
+		<id column="Acc_id" property="Acc_id"/>
+		<result column="Acc_telPhone" property="Acc_telPhone"/>
+		<result column="Acc_email" property="Acc_email"/>
+		<result column="Acc_password" property="Acc_password"/>
+		<result column="Acc_salt" property="Acc_salt"/>
+		<result column="Acc_salt" property="Acc_salt"/>
+		<result column="Acc_lockStatus" property="Acc_lockStatus"/>
+		<result column="Acc_lockTime" property="Acc_lockTime"/>
+		<association property="employee" resultMap="empMap"></association>
+	</resultMap>
+	<resultMap type="employee" id="empMap">
+		<id column="emp_id" property="emp_id"/>
+		<result column="emp_fileNumber" property="emp_fileNumber"/>
+		<result column="emp_name" property="emp_name"/>
+		<result column="emp_sex" property="emp_sex"/>
+		<result column="emp_picture" property="emp_picture"/>
+		<result column="emp_email" property="emp_email"/>
+		<result column="emp_telPhone" property="emp_telPhone"/>
+		<result column="emp_address" property="emp_address"/>
+		<result column="emp_postalCode" property="emp_postalCode"/>
+		<result column="emp_nationality" property="emp_nationality"/>
+		<result column="emp_birthAddress" property="emp_birthAddress"/>
+		<result column="emp_age" property="emp_age"/>
+		<result column="emp_birthday" property="emp_birthday"/>
+		<result column="emp_nation" property="emp_nation"/>
+		<result column="emp_faith" property="emp_faith"/>
+		<result column="emp_politicalOutlook" property="emp_politicalOutlook"/>
+		<result column="emp_IDnumber" property="emp_IDnumber"/>
+		<result column="emp_socialSecurityNumber" property="emp_socialSecurityNumber"/>
+		<result column="emp_graduateSchool" property="emp_graduateSchool"/>
+		<result column="emp_qualifications" property="emp_qualifications"/>
+		<result column="emp_yearsOfEducation" property="emp_yearsOfEducation"/>
+		<result column="emp_major" property="emp_major"/>
+		<result column="emp_openingBank" property="emp_openingBank"/>
+		<result column="emp_bankAccount" property="emp_bankAccount"/>
+		<result column="emp_registrantTime" property="emp_registrantTime"/>
+		<result column="emp_speciality" property="emp_speciality"/>
+		<result column="emp_hobby" property="emp_hobby"/>
+		<result column="emp_personalResume" property="emp_personalResume"/>
+		<result column="emp_familyRelationsInfo" property="emp_familyRelationsInfo"/>
+		<result column="emp_registrant" property="emp_registrant"/>
+		<result column="emp_remarks" property="emp_remarks"/>
+		<association property="position" resultMap="posMap"></association>
+	</resultMap>
+	<resultMap type="position" id="posMap">
+		<id column="pos_id" property="pos_id"/>
+		<result column="pos_name" property="pos_name"/>
+		<association property="department" resultMap="departmentMap"></association>
+	</resultMap>
+	<resultMap type="department" id="departmentMap">
+		<id column="dep_id" property="dep_id"/>
+		<result column="dep_name" property="dep_name"/>
+		<result column="dep_lastPayday" property="dep_lastPayday"/>
+		<result column="dep_salaryStatus" property="dep_salaryStatus"/>
+	</resultMap>
+	<select id="selectByStatus" parameterType="Account" resultMap="accountMap">
+		select e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
+			from employee e left join account a 
+			on a.emp_id=e.emp_id left join position p
+			on e.pos_id=p.pos_id left join department d
+			on p.dep_id=d.dep_id 
+			<where>
+				<if test="acc_lockStatus !='' and acc_lockStatus != null">
+					a.acc_lockStatus=#{acc_lockStatus}
+				</if>
+				<if test="emp_fileNumber !='' and emp_fileNumber != null">
+					a.emp_fileNumber=#{emp_fileNumber}
+				</if>
+				<!-- <if test="emp_registrantTime !='' and emp_registrantTime != null">
+					a.emp_registrantTime=#{emp_registrantTime}
+				</if> -->
+			</where>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
