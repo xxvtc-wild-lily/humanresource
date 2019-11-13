@@ -14,9 +14,9 @@ public class DepartmentController {
 	private DepartmentService depser;
 	@PostMapping("/selectdep")
 	public List<Department> selectDepPosAll(){
-		System.out.println("!!!!!!!!!!");
+		
 		List<Department> selectDepAll = depser.selectDepAll();
-		System.out.println(selectDepAll.toString());
+		
 		return selectDepAll;
 	}
 }
