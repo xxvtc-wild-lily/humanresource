@@ -9,4 +9,44 @@
                #{ss_floatWages},#{ss_routine},#{ss_lunchAllowance},#{ss_vehicleSubsidy})
     </insert>
     
+    <select id="selectCountBySalaryStandardName" parameterType="salaryStandard" resultType="_int">
+        select count(1) from salarystandard where ss_name = #{ss_name}
+    </select>
+    
+    <select id="selectAllUncheckSalaryStandard" parameterType="pagination" resultType="salaryStandard">
+        select ss_id,ss_name,ss_enactingPerson,ss_registrant,ss_registrationTime,ss_aduitStatus,ss_baseSalary,ss_trafficSubsidy,ss_communicationSubsidy,ss_floatWages,ss_routine,ss_lunchAllowance,ss_vehicleSubsidy 
+        from salarystandard
+        <where>
+            ss_aduitStatus = 0
+            <if test="ss_name != '' and ss_name != null">
+                and ss_name like "%"#{ss_name}"%"
+            </if>
+            <if test="ss_enactingPerson != '' and ss_enactingPerson != null">
+                and ss_enactingPerson like "%"#{ss_enactingPerson}"%"
+            </if>
+            <if test="ss_registrant != '' and ss_registrant != null">
+                and ss_registrant like "%"#{ss_registrant}"%"
+            </if>
+            <if test="ss_registrationTimeStart != '' and ss_registrationTimeStart != null">
+                and ss_registrationTime &gt;= #{ss_registrationTimeStart}
+            </if>
+            <if test="ss_registrationTimeEnd != '' and ss_registrationTimeEnd != null">
+                and ss_registrationTime &lt;= #{ss_registrationTimeEnd}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+    
+    <select id="selectCountBySalaryStandardNameAndId" parameterType="salaryStandard" resultType="_int">
+        select count(1) from salarystandard where ss_name = #{ss_name} and ss_id != #{ss_id}
+    </select>
+    
+    <update id="updateSalaryStandardById" parameterType="salaryStandard">
+        update salarystandard set ss_name = #{ss_name},ss_enactingPerson = #{ss_enactingPerson},ss_registrant = #{ss_registrant},
+        ss_reviewer = #{ss_reviewer},ss_aduitOpinion = #{ss_aduitOpinion},ss_reviewTime = now(),ss_aduitStatus = #{ss_aduitStatus},
+        ss_baseSalary = #{ss_baseSalary},ss_communicationSubsidy = #{ss_communicationSubsidy},ss_floatWages = #{ss_floatWages},ss_routine = #{ss_routine},
+        ss_lunchAllowance = #{ss_lunchAllowance},ss_trafficSubsidy = #{ss_trafficSubsidy},ss_vehicleSubsidy = #{ss_vehicleSubsidy}
+        where ss_id = #{ss_id}
+    </update>
+    
 </mapper>

@@ -1,9 +1,12 @@
 package com.ysd.humanresource.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ysd.humanresource.dao.SalaryStandardMapper;
+import com.ysd.humanresource.entity.Pagination;
 import com.ysd.humanresource.entity.SalaryStandard;
 import com.ysd.humanresource.enums.SalaryStandardStatusEnum;
 import com.ysd.humanresource.service.SalaryStandardService;
@@ -29,6 +32,31 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 		salaryStandard.setSs_vehicleSubsidy(MoneyJudgeUtil.judge(salaryStandard.getSs_vehicleSubsidy()));
 		
 		return salaryStandardMapper.insertSalaryStandard(salaryStandard);
+	}
+	
+	@Override
+	public Integer selectCountBySalaryStandardName(SalaryStandard salaryStandard) {
+		// TODO Auto-generated method stub
+		return salaryStandardMapper.selectCountBySalaryStandardName(salaryStandard);
+	}
+
+	@Override
+	public List<SalaryStandard> selectAllUncheckSalaryStandard(Pagination pagination) {
+		// TODO Auto-generated method stub
+		return salaryStandardMapper.selectAllUncheckSalaryStandard(pagination);
+	}
+	
+	@Override
+	public Integer selectCountBySalaryStandardNameAndId(SalaryStandard salaryStandard) {
+		// TODO Auto-generated method stub
+		return salaryStandardMapper.selectCountBySalaryStandardNameAndId(salaryStandard);
+	}
+
+	@Override
+	public Integer updateSalaryStandardById(SalaryStandard salaryStandard) {
+		// TODO Auto-generated method stub
+		salaryStandard.setSs_aduitStatus(SalaryStandardStatusEnum.SALARYSTANDARDPASSEDADUIT.getCode());
+		return salaryStandardMapper.updateSalaryStandardById(salaryStandard);
 	}
 	
 }
