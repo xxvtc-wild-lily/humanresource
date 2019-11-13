@@ -13,10 +13,10 @@ public class SalaryStandard {
 	private String ss_name;
 	private String ss_enactingPerson;
 	private String ss_registrant;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ss_registrationTime;
 	private String ss_reviewer;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ss_reviewTime;
 	private Integer ss_aduitStatus;
 	private String ss_aduitOpinion;

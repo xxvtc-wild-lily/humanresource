@@ -14,7 +14,7 @@ public class Payrollrecord {
 	private String pr_fileNumber;
 	private String emp_name;
 	private String pr_registrant;
-	@DateTimeFormat(pattern = "yyyy-MM-hh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date pr_registrationTime;
 	private BigDecimal pr_baseSalary;
 	private BigDecimal pr_trafficSubsidy;
