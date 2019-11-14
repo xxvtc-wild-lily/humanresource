@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum SalaryStandardStatusEnum {
 	
 	SALARYSTANDARDWAITADUIT(0, "薪酬标准等待审核"),
+	SALARYSTANDARDPASSEDADUIT(1, "薪酬标准通过审核"),
     ;
 
     private Integer code;
