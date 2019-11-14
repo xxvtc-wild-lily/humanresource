@@ -29,7 +29,7 @@ public class SalaryStandardController {
 	}
 	
 	@PostMapping("/getUncheckSalaryStandard")
-	public List<SalaryStandard> getUncheckSalaryStandard(Integer page,@RequestParam("rows") Integer pageSize,Pagination<SalaryStandard> pagination) {
+	public Pagination<SalaryStandard> getUncheckSalaryStandard(Integer page,@RequestParam("rows") Integer pageSize,Pagination<SalaryStandard> pagination) {
 		pagination.setPage((page - 1) * pageSize);
 		pagination.setPageSize(pageSize);
 		return salaryStandardService.selectAllUncheckSalaryStandard(pagination);
@@ -43,6 +43,13 @@ public class SalaryStandardController {
 	@PostMapping("/submitExaminedSalaryStandard")
 	public Integer submitExaminedSalaryStandard(SalaryStandard salaryStandard) {
 		return salaryStandardService.updateSalaryStandardById(salaryStandard);
+	}
+	
+	@PostMapping("/getAllcheckedSalaryStandard")
+	public Pagination<SalaryStandard> getAllcheckedSalaryStandard(Integer page,@RequestParam("rows") Integer pageSize,Pagination<SalaryStandard> pagination) {
+		pagination.setPage((page - 1) * pageSize);
+		pagination.setPageSize(pageSize);
+		return salaryStandardService.selectAllCheckedSalaryStandard(pagination);
 	}
 	
 }

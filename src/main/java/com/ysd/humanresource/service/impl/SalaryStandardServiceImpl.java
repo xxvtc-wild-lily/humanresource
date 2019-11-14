@@ -41,9 +41,11 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 	}
 
 	@Override
-	public List<SalaryStandard> selectAllUncheckSalaryStandard(Pagination pagination) {
+	public Pagination<SalaryStandard> selectAllUncheckSalaryStandard(Pagination<SalaryStandard> pagination) {
 		// TODO Auto-generated method stub
-		return salaryStandardMapper.selectAllUncheckSalaryStandard(pagination);
+		pagination.setRows(salaryStandardMapper.selectAllUncheckSalaryStandard(pagination));
+		pagination.setTotal(salaryStandardMapper.selectAllUncheckSalaryStandardCount(pagination));
+		return pagination;
 	}
 	
 	@Override
@@ -57,6 +59,14 @@ public class SalaryStandardServiceImpl implements SalaryStandardService {
 		// TODO Auto-generated method stub
 		salaryStandard.setSs_aduitStatus(SalaryStandardStatusEnum.SALARYSTANDARDPASSEDADUIT.getCode());
 		return salaryStandardMapper.updateSalaryStandardById(salaryStandard);
+	}
+
+	@Override
+	public Pagination<SalaryStandard> selectAllCheckedSalaryStandard(Pagination<SalaryStandard> pagination) {
+		// TODO Auto-generated method stub
+		pagination.setRows(salaryStandardMapper.selectAllCheckedSalaryStandard(pagination));
+		pagination.setTotal(salaryStandardMapper.selectAllCheckedSalaryStandardCount(pagination));
+		return pagination;
 	}
 	
 }
