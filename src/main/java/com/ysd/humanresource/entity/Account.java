@@ -24,5 +24,6 @@ public class Account {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date emp_registrantTime;
 	
+	private String dep_name;
 	
 }

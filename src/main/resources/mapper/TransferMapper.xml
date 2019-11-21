@@ -64,15 +64,18 @@
 			on e.pos_id=p.pos_id left join department d
 			on p.dep_id=d.dep_id 
 			<where>
-				<if test="acc_lockStatus !='' and acc_lockStatus != null">
-					a.acc_lockStatus=#{acc_lockStatus}
+				<if test="acc_lockStatus !=null">
+					and a.acc_lockStatus=#{acc_lockStatus}
+				</if>
+				<if test="dep_name !='' and dep_name != null">
+					and d.dep_name=#{dep_name}
 				</if>
 				<if test="emp_fileNumber !='' and emp_fileNumber != null">
-					a.emp_fileNumber=#{emp_fileNumber}
+					and e.emp_fileNumber=#{emp_fileNumber}
 				</if>
-				<!-- <if test="emp_registrantTime !='' and emp_registrantTime != null">
-					a.emp_registrantTime=#{emp_registrantTime}
-				</if> -->
+				<if test="emp_registrantTime !='' and emp_registrantTime != null">
+					and e.emp_registrantTime=#{emp_registrantTime}
+				</if>
 			</where>
 	</select>
 	
