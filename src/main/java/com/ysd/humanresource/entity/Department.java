@@ -1,6 +1,7 @@
 package com.ysd.humanresource.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,10 +9,10 @@ import lombok.Data;
 @Data
 public class Department {
 	
-	private Integer Dep_id;
-	private String Dep_name;
+	private Integer dep_id;
+	private String dep_name;
 	@DateTimeFormat(pattern = "yyyy-MM-hh")
-	private Date Dep_lastPayday;
-	private Integer Dep_salaryStatus;
+	private Date dep_lastPayday;
+	private Integer dep_salaryStatus;
 	
 }

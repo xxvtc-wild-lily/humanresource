@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 @Data
-public class Payrollrecord {
+public class PayrollRecord {
 	
 	private Integer pr_id;
 	private String pr_paySlipNumber;
@@ -19,12 +19,14 @@ public class Payrollrecord {
 	private BigDecimal pr_baseSalary;
 	private BigDecimal pr_trafficSubsidy;
 	private BigDecimal pr_communicationSubsidy;
-	private BigDecimal pr_floatingWages;
+	private BigDecimal pr_floatWages;
 	private BigDecimal pr_routine;
 	private BigDecimal pr_lunchAllowance;
 	private BigDecimal pr_vehicleSubsidy;
 	private BigDecimal pr_rewardAmount;
 	private BigDecimal pr_amountPayable;
 	private String pr_payrollRemarks;
+	private String pr_ext1;
+	private Integer pr_ext2;
 	
 }
