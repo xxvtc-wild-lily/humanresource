@@ -103,4 +103,33 @@
         </foreach>
     </insert>
     
+    <select id="selectAllNotAduitPayrollRecord" resultType="payrollRecord">
+        select pr.* from payrollrecord pr
+        where pr.pr_ext2 = 0;
+    </select>
+    
+    <update id="updatePayrollRecordAduitStatus" parameterType="payrollRecord">
+        update payrollRecord set pr_ext2 = #{pr_ext2},pr_rewardAmount = #{pr_rewardAmount},pr_amountPayable = #{pr_amountPayable}
+        where pr_id = #{pr_id};
+    </update>
+    
+    <select id="selectAllPayrollRecord" resultType="payrollRecord">
+        select pr.* from payrollrecord pr
+        <where>
+            <if test="emp_name != '' and emp_name != null">
+                pr.emp_name like "%"#{emp_name}"%"
+            </if>
+            <if test="pr_registrant != '' and pr_registrant != null">
+                and pr.pr_registrant like "%"#{pr_registrant}"%"
+            </if>
+            <if test="pr_registrationTimeStart != '' and pr_registrationTimeStart != null">
+                and pr.pr_registrationTime &gt;= #{pr_registrationTimeStart}
+            </if>
+            <if test="pr_registrationTimeEnd != '' and pr_registrationTimeEnd != null">
+                and pr.pr_registrationTime &lt;= #{pr_registrationTimeEnd}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+    
 </mapper>

@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.ysd.humanresource.DTO.PayrollRecordDTO;
 import com.ysd.humanresource.dao.SalaryPaymentMapper;
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.PayrollRecord;
 import com.ysd.humanresource.entity.Position;
 import com.ysd.humanresource.enums.SalaryPaymentStatusEnum;
 import com.ysd.humanresource.service.SalaryPaymentService;
@@ -58,11 +59,28 @@ public class SalaryPaymentServiceImpl implements SalaryPaymentService {
 		String pr_paySlipNumber = Integer.toString(year) + Integer.toString(month) + Integer.toString(day) + (int)((Math.random()*9+1)*100000);
 		for (int i = 0;i < PayrollRecordDTOList.size();i++) {
 			PayrollRecordDTOList.get(i).setPr_paySlipNumber(pr_paySlipNumber);
-			
 			PayrollRecordDTOList.get(i).setPr_ext2(SalaryPaymentStatusEnum.SALARYPAYMENTWAITADUIT.getCode());
-			System.out.println(PayrollRecordDTOList.get(i).toString());
 		}
 		return salaryPaymentMapper.insertPayrollRecord(PayrollRecordDTOList);
+	}
+
+	@Override
+	public List<PayrollRecord> selectAllNotAduitPayrollRecord() {
+		// TODO Auto-generated method stub
+		return salaryPaymentMapper.selectAllNotAduitPayrollRecord();
+	}
+
+	@Override
+	public Integer updatePayrollRecordAduitStatus(PayrollRecord payrollRecord) {
+		// TODO Auto-generated method stub
+		payrollRecord.setPr_ext2(SalaryPaymentStatusEnum.SALARYPAYMENTPASSEDADUIT.getCode());
+		return salaryPaymentMapper.updatePayrollRecordAduitStatus(payrollRecord);
+	}
+
+	@Override
+	public List<PayrollRecord> selectAllPayrollRecord(Pagination pagination) {
+		// TODO Auto-generated method stub
+		return salaryPaymentMapper.selectAllPayrollRecord(pagination);
 	}
 	
 }
