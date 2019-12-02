@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ysd.humanresource.entity.Account;
+import com.ysd.humanresource.entity.Employee;
 import com.ysd.humanresource.service.TransferService;
 @RestController
 public class TransferController {
@@ -18,4 +19,11 @@ public class TransferController {
 		List<Account> list=transferService.selectByStatus(account);
 		return list;
 	}
+	
+	@PostMapping("/updateTransfer")
+	public Integer updateTransfer(Employee employee) {
+		Integer updateTransfer = transferService.updateTransfer(employee);
+		return updateTransfer;
+	}
+	
 }

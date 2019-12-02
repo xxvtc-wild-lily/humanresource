@@ -26,4 +26,6 @@ public class Account {
 	
 	private String dep_name;
 	
+	private String ss_name;
+	
 }

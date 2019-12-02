@@ -44,4 +44,7 @@ public class Employee {
 	private String emp_remarks;	
 	
 	private Position position;
+	private String dep_name;
+	private String pos_name;
+	private String ss_name;
 }

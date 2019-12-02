@@ -8,58 +8,58 @@ import com.ysd.humanresource.entity.SalaryStandard;
 public interface SalaryStandardMapper {
 	
 	/**
-	 * ╠э╝╙╨╜│ъ▒ъ╫╝
-	 * @param salaryStandard ░№║м╨╜│ъ▒ъ╫╝╨┼╧в╡─╩╡╠х└р
-	 * @return ╩▄╙░╧ь╡─╨╨╩¤
+	 * я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝
+	 * @param salaryStandard я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╙░я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer insertSalaryStandard(SalaryStandard salaryStandard);
 	
 	/**
-	 * ╕∙╛▌╨╜│ъ├√│╞▓щ╒╥╕├╨╜│ъ▒ъ╫╝╩╟╖ё┤ц╘┌
-	 * @param salaryStandard ░№║м╨╜│ъ▒ъ╫╝╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─╖√║╧╠ї╝■╡─╨╨╩¤
+	 * я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜я┐╜я┐╜╞▓я┐╜я┐╜╥╕я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜╟╖я┐╜я┐╜я┐╜я┐╜
+	 * @param salaryStandard я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜─╖я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer selectCountBySalaryStandardName(SalaryStandard salaryStandard);
 	
 	/**
-	 * ▓щ╤п╬┤╔є║╦╡─╨╜│ъ▒ъ╫╝
-	 * @param pagination ░№║м╖╓╥│╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─╬┤╔є║╦╡─╨╜│ъ╨┼╧в
+	 * я┐╜я┐╜╤п╬┤я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝
+	 * @param pagination я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥│я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜╬┤я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜я┐╜╧в
 	 */
 	List<SalaryStandard> selectAllUncheckSalaryStandard(Pagination pagination);
 	
 	/**
-	 * ▓щ╤п╬┤╔є║╦╡─╨╜│ъ▒ъ╫╝╩¤┴┐
-	 * @param pagination ░№║м╖╓╥│╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─╬┤╔є║╦╡─╨╜│ъ╨┼╧в╩¤┴┐
+	 * я┐╜я┐╜╤п╬┤я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜я┐╜я┐╜
+	 * @param pagination я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥│я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜╬┤я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜я┐╜╧вя┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer selectAllUncheckSalaryStandardCount(Pagination pagination);
 	
 	/**
-	 * ╕∙╛▌╨╜│ъ├√│╞║═id▓щ╒╥╕├╨╜│ъ▒ъ╫╝╩╟╖ё┤ц╘┌
-	 * @param salaryStandard ░№║м╨╜│ъ▒ъ╫╝╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─╖√║╧╠ї╝■╡─╨╨╩¤
+	 * я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜я┐╜я┐╜╞║я┐╜idя┐╜я┐╜я┐╜╥╕я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜╟╖я┐╜я┐╜я┐╜я┐╜
+	 * @param salaryStandard я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜─╖я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer selectCountBySalaryStandardNameAndId(SalaryStandard salaryStandard);
 	
 	/**
-	 * ═и╣¤╨╜│ъ▒ъ╫╝╔є║╦║є╕∙╛▌id╨▐╕─╨╜│ъ▒ъ╫╝
-	 * @param salaryStandard ░№║м╨╜│ъ▒ъ╫╝╨┼╧в╡─╩╡╠х└р
-	 * @return ╩▄╙░╧ь╡─╨╨╩¤
+	 * ═ия┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜╦║я┐╜я┐╜я┐╜я┐╜idя┐╜▐╕я┐╜╨╜я┐╜я┐╜я┐╜╫╝
+	 * @param salaryStandard я┐╜я┐╜я┐╜я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╙░я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer updateSalaryStandardById(SalaryStandard salaryStandard);
 	
 	/**
-	 * ▓щ╤п╦∙╙╨═и╣¤╔є║╦╡─╨╜│ъ▒ъ╫╝
-	 * @param pagination ░№║м╖╓╥│╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─═и╣¤╔є║╦╡─╨╜│ъ▒ъ╫╝
+	 * я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜═ия┐╜я┐╜я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝
+	 * @param pagination я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥│я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜═ия┐╜я┐╜я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝
 	 */
 	List<SalaryStandard> selectAllCheckedSalaryStandard(Pagination pagination);
 	
 	/**
-	 * ▓щ╤п╦∙╙╨═и╣¤╔є║╦╡─╨╜│ъ▒ъ╫╝╩¤┴┐
-	 * @param pagination ░№║м╖╓╥│╨┼╧в╡─╩╡╠х└р
-	 * @return ▓щ╤п╡╜╡─═и╣¤╔є║╦╡─╨╜│ъ▒ъ╫╝╩¤┴┐
+	 * я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜═ия┐╜я┐╜я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜я┐╜я┐╜
+	 * @param pagination я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥│я┐╜я┐╜╧вя┐╜я┐╜╩╡я┐╜я┐╜я┐╜я┐╜
+	 * @return я┐╜я┐╜╤пя┐╜я┐╜я┐╜я┐╜═ия┐╜я┐╜я┐╜я┐╜╦╡я┐╜╨╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜я┐╜я┐╜
 	 */
 	Integer selectAllCheckedSalaryStandardCount(Pagination pagination);
 	

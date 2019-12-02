@@ -10,59 +10,76 @@
 		<result column="Acc_salt" property="Acc_salt"/>
 		<result column="Acc_lockStatus" property="Acc_lockStatus"/>
 		<result column="Acc_lockTime" property="Acc_lockTime"/>
-		<association property="employee" resultMap="empMap"></association>
+		<association property="employee" javaType="employee">
+			<id column="emp_id" property="emp_id"/>
+			<result column="emp_fileNumber" property="emp_fileNumber"/>
+			<result column="emp_name" property="emp_name"/>
+			<result column="emp_sex" property="emp_sex"/>
+			<result column="emp_picture" property="emp_picture"/>
+			<result column="emp_email" property="emp_email"/>
+			<result column="emp_telPhone" property="emp_telPhone"/>
+			<result column="emp_address" property="emp_address"/>
+			<result column="emp_postalCode" property="emp_postalCode"/>
+			<result column="emp_nationality" property="emp_nationality"/>
+			<result column="emp_birthAddress" property="emp_birthAddress"/>
+			<result column="emp_age" property="emp_age"/>
+			<result column="emp_birthday" property="emp_birthday"/>
+			<result column="emp_nation" property="emp_nation"/>
+			<result column="emp_faith" property="emp_faith"/>
+			<result column="emp_politicalOutlook" property="emp_politicalOutlook"/>
+			<result column="emp_IDnumber" property="emp_IDnumber"/>
+			<result column="emp_socialSecurityNumber" property="emp_socialSecurityNumber"/>
+			<result column="emp_graduateSchool" property="emp_graduateSchool"/>
+			<result column="emp_qualifications" property="emp_qualifications"/>
+			<result column="emp_yearsOfEducation" property="emp_yearsOfEducation"/>
+			<result column="emp_major" property="emp_major"/>
+			<result column="emp_openingBank" property="emp_openingBank"/>
+			<result column="emp_bankAccount" property="emp_bankAccount"/>
+			<result column="emp_registrantTime" property="emp_registrantTime"/>
+			<result column="emp_speciality" property="emp_speciality"/>
+			<result column="emp_hobby" property="emp_hobby"/>
+			<result column="emp_personalResume" property="emp_personalResume"/>
+			<result column="emp_familyRelationsInfo" property="emp_familyRelationsInfo"/>
+			<result column="emp_registrant" property="emp_registrant"/>
+			<result column="emp_remarks" property="emp_remarks"/>
+			<association property="position" javaType="position" >
+				<id column="pos_id" property="pos_id"/>
+				<result column="pos_name" property="pos_name"/>
+				<association property="department" javaType="department" >
+					<id column="dep_id" property="dep_id"/>
+					<result column="dep_name" property="dep_name"/>
+					<result column="dep_lastPayday" property="dep_lastPayday"/>
+					<result column="dep_salaryStatus" property="dep_salaryStatus"/>
+				</association>
+				<association property="salaryStandard" javaType="salaryStandard" >
+					<id column="ss_id" property="ss_id"/>
+					<result column="ss_name" property="ss_name"/>
+					<result column="ss_enactingPerson" property="ss_enactingPerson"/>
+					<result column="ss_registrant" property="ss_registrant"/>
+					<result column="ss_registrationTime" property="ss_registrationTime"/>
+					<result column="ss_reviewer" property="ss_reviewer"/>
+					<result column="ss_reviewTime" property="ss_reviewTime"/>
+					<result column="ss_aduitStatus" property="ss_aduitStatus"/>
+					<result column="ss_aduitOpinion" property="ss_aduitOpinion"/>
+					<result column="ss_baseSalary" property="ss_baseSalary"/>
+					<result column="ss_trafficSubsidy" property="ss_trafficSubsidy"/>
+					<result column="ss_communicationSubsidy" property="ss_communicationSubsidy"/>
+					<result column="ss_floatWages" property="ss_floatWages"/>
+					<result column="ss_routine" property="ss_routine"/>
+					<result column="ss_lunchAllowance" property="ss_lunchAllowance"/>
+					<result column="ss_vehicleSubsidy" property="ss_vehicleSubsidy"/>
+				</association>
+			</association>
+		</association>
 	</resultMap>
-	<resultMap type="employee" id="empMap">
-		<id column="emp_id" property="emp_id"/>
-		<result column="emp_fileNumber" property="emp_fileNumber"/>
-		<result column="emp_name" property="emp_name"/>
-		<result column="emp_sex" property="emp_sex"/>
-		<result column="emp_picture" property="emp_picture"/>
-		<result column="emp_email" property="emp_email"/>
-		<result column="emp_telPhone" property="emp_telPhone"/>
-		<result column="emp_address" property="emp_address"/>
-		<result column="emp_postalCode" property="emp_postalCode"/>
-		<result column="emp_nationality" property="emp_nationality"/>
-		<result column="emp_birthAddress" property="emp_birthAddress"/>
-		<result column="emp_age" property="emp_age"/>
-		<result column="emp_birthday" property="emp_birthday"/>
-		<result column="emp_nation" property="emp_nation"/>
-		<result column="emp_faith" property="emp_faith"/>
-		<result column="emp_politicalOutlook" property="emp_politicalOutlook"/>
-		<result column="emp_IDnumber" property="emp_IDnumber"/>
-		<result column="emp_socialSecurityNumber" property="emp_socialSecurityNumber"/>
-		<result column="emp_graduateSchool" property="emp_graduateSchool"/>
-		<result column="emp_qualifications" property="emp_qualifications"/>
-		<result column="emp_yearsOfEducation" property="emp_yearsOfEducation"/>
-		<result column="emp_major" property="emp_major"/>
-		<result column="emp_openingBank" property="emp_openingBank"/>
-		<result column="emp_bankAccount" property="emp_bankAccount"/>
-		<result column="emp_registrantTime" property="emp_registrantTime"/>
-		<result column="emp_speciality" property="emp_speciality"/>
-		<result column="emp_hobby" property="emp_hobby"/>
-		<result column="emp_personalResume" property="emp_personalResume"/>
-		<result column="emp_familyRelationsInfo" property="emp_familyRelationsInfo"/>
-		<result column="emp_registrant" property="emp_registrant"/>
-		<result column="emp_remarks" property="emp_remarks"/>
-		<association property="position" resultMap="posMap"></association>
-	</resultMap>
-	<resultMap type="position" id="posMap">
-		<id column="pos_id" property="pos_id"/>
-		<result column="pos_name" property="pos_name"/>
-		<association property="department" resultMap="departmentMap"></association>
-	</resultMap>
-	<resultMap type="department" id="departmentMap">
-		<id column="dep_id" property="dep_id"/>
-		<result column="dep_name" property="dep_name"/>
-		<result column="dep_lastPayday" property="dep_lastPayday"/>
-		<result column="dep_salaryStatus" property="dep_salaryStatus"/>
-	</resultMap>
+	
 	<select id="selectByStatus" parameterType="Account" resultMap="accountMap">
-		select e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
+		select e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_name,ss.ss_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
 			from employee e left join account a 
 			on a.emp_id=e.emp_id left join position p
 			on e.pos_id=p.pos_id left join department d
-			on p.dep_id=d.dep_id 
+			on p.dep_id=d.dep_id left join salarystandard ss
+			on p.ss_id=ss.ss_id
 			<where>
 				<if test="acc_lockStatus !=null">
 					and a.acc_lockStatus=#{acc_lockStatus}
@@ -79,6 +96,34 @@
 			</where>
 	</select>
 	
+	<update id="updateTransfer" parameterType="employee">
+		update employee e 
+			left join position p 
+			on e.pos_id=p.pos_id
+			left join department d
+			on p.dep_id=d.dep_id 
+			left join salarystandard ss
+			on p.ss_id=ss.ss_id
+			set
+				<if test="emp_fileNumber !='' and emp_fileNumber != null">
+					e.emp_fileNumber=#{emp_fileNumber},
+				</if>
+				<if test="emp_name !='' and emp_name != null">
+					e.emp_name=#{emp_name},
+				</if>
+				<if test="pos_name !='' and pos_name != null">
+					p.pos_name=#{pos_name},
+				</if>
+				<if test="dep_name !='' and dep_name != null">
+					d.dep_name=#{dep_name},
+				</if>
+				<if test="ss_name != '' and ss_name != null">
+					ss.ss_name=#{ss_name}
+				</if>
+			<where>
+				e.emp_fileNumber=#{emp_fileNumber}
+			</where>
+	</update>
 </mapper>
 
 
