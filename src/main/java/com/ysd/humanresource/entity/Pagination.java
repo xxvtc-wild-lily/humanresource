@@ -12,7 +12,7 @@ public class Pagination<T> {
 	Integer total;
 	List<T> rows;
 	
-	// 薪酬标准复核查询条件
+	// 钖叕绠＄悊
 	private String ss_name;
 	private String ss_enactingPerson;
 	private String ss_registrant;
@@ -21,5 +21,9 @@ public class Pagination<T> {
 	private String ss_registrationTimeEnd;
 	private String ss_reviewTimeStart;
 	private String ss_reviewTimeEnd;
+	private String emp_name;
+	private String pr_registrant;
+	private String pr_registrationTimeStart;
+	private String pr_registrationTimeEnd;
 	
 }

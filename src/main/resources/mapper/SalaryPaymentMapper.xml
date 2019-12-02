@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.SalaryPaymentMapper">
+    
+    <!-- 职位表 -->
+    <resultMap type="position" id="positionMap">
+        <id property="pos_id" column="pos_id" />
+        <result property="dep_id" column="dep_id" />
+        <result property="ss_id" column="ss_id" />
+        <result property="pos_name" column="pos_name" />
+        
+        <!-- 部门表 -->
+        <association property="department" javaType="department" >
+            <id property="dep_id" column="dep_id" />
+            <result property="dep_name" column="dep_name" />
+            <result property="dep_lastPayday" column="dep_lastPayday" />
+            <result property="dep_salaryStatus" column="dep_salaryStatus" />
+        </association>
+        
+        <!-- 薪酬标准表 -->
+        <association property="salaryStandard" javaType="salaryStandard" >
+            <id property="ss_id" column="ss_id" />
+            <result property="ss_name" column="ss_name" />
+            <result property="ss_enactingPerson" column="ss_enactingPerson" />
+            <result property="ss_registrant" column="ss_registrant" />
+            <result property="ss_registrationTime" column="ss_registrationTime" />
+            <result property="ss_reviewer" column="ss_reviewer" />
+            <result property="ss_reviewTime" column="ss_reviewTime" />
+            <result property="ss_aduitStatus" column="ss_aduitStatus" />
+            <result property="ss_aduitOpinion" column="ss_aduitOpinion" />
+            <result property="ss_baseSalary" column="ss_baseSalary" />
+            <result property="ss_trafficSubsidy" column="ss_trafficSubsidy" />
+            <result property="ss_communicationSubsidy" column="ss_communicationSubsidy" />
+            <result property="ss_floatWages" column="ss_floatWages" />
+            <result property="ss_routine" column="ss_routine" />
+            <result property="ss_lunchAllowance" column="ss_lunchAllowance" />
+            <result property="ss_vehicleSubsidy" column="ss_vehicleSubsidy" />
+        </association>
+            
+        <!-- 员工表 -->
+        <collection property="employeeList" ofType="employee">
+            <id property="emp_id" column="emp_id" />
+            <result property="emp_fileNumber" column="emp_fileNumber" />
+            <result property="emp_name" column="emp_name" />
+            <result property="emp_sex" column="emp_sex" />
+            <result property="emp_picture" column="emp_picture" />
+            <result property="emp_email" column="emp_email" />
+            <result property="emp_telPhone" column="emp_telPhone" />
+            <result property="emp_address" column="emp_address" />
+            <result property="emp_postalCode" column="emp_postalCode" />
+            <result property="emp_nationality" column="emp_nationality" />
+            <result property="emp_birthAddress" column="emp_birthAddress" />
+            <result property="emp_age" column="emp_age" />
+            <result property="emp_birthday" column="emp_birthday" />
+            <result property="emp_nation" column="emp_nation" />
+            <result property="emp_faith" column="emp_faith" />
+            <result property="emp_politicalOutlook" column="emp_politicalOutlook" />
+            <result property="emp_IDnumber" column="emp_IDnumber" />
+            <result property="emp_socialSecurityNumber" column="emp_socialSecurityNumber" />
+            <result property="emp_graduateSchool" column="emp_graduateSchool" />
+            <result property="emp_qualifications" column="emp_qualifications" />
+            <result property="emp_yearsOfEducation" column="emp_yearsOfEducation" />
+            <result property="emp_major" column="emp_major" />
+            <result property="emp_openingBank" column="emp_openingBank" />
+            <result property="emp_bankAccount" column="emp_bankAccount" />
+            <result property="emp_registrantTime" column="emp_registrantTime" />
+            <result property="emp_speciality" column="emp_speciality" />
+            <result property="emp_hobby" column="emp_hobby" />
+            <result property="emp_personalResume" column="emp_personalResume" />
+            <result property="emp_familyRelationsInfo" column="emp_familyRelationsInfo" />
+            <result property="emp_registrant" column="emp_registrant" />
+            <result property="pos_id" column="pos_id" />
+            <result property="emp_remarks" column="emp_remarks" />
+        </collection>
+        
+    </resultMap>
+    
+    <select id="selectDepartmentSalaryPaymentInfo" parameterType="pagination" resultMap="positionMap">
+        select d.*,p.*,e.*,s.*
+        from department d inner join position p on d.dep_id = p.dep_id inner join employee e on p.pos_id = e.pos_id inner join salarystandard s on p.ss_id = s.ss_id 
+        group by d.dep_name,p.pos_name,e.emp_name
+        limit #{page},#{pageSize}
+    </select>
+    
+    <select id="selectDepartmentSalaryPaymentInfoCount" parameterType="pagination" resultType="_int">
+        select count(1) 
+        from department d inner join position p on d.dep_id = p.dep_id inner join employee e on p.pos_id = e.pos_id inner join salarystandard s on p.ss_id = s.ss_id
+    </select>
+    
+    <select id="selectAllEmployeeCount" resultType="_int">
+        select count(1)
+        from employee
+    </select>
+    
+    <insert id="insertPayrollRecord" parameterType="com.ysd.humanresource.DTO.PayrollRecordDTO">
+        insert into payrollrecord(pr_paySlipNumber,pr_fileNumber,emp_name,pr_registrant,pr_registrationTime,pr_baseSalary,pr_trafficSubsidy,pr_communicationSubsidy,
+        pr_floatWages,pr_routine,pr_lunchAllowance,pr_vehicleSubsidy,pr_rewardAmount,pr_amountPayable,pr_payrollRemarks,pr_ext2) 
+        values 
+        <foreach collection="list" item="rows" separator=",">
+            (#{rows.pr_paySlipNumber},#{rows.emp_fileNumber},#{rows.emp_name},#{rows.pr_registrant},now(),#{rows.ss_baseSalary},#{rows.ss_trafficSubsidy},
+            #{rows.ss_communicationSubsidy},#{rows.ss_floatWages},#{rows.ss_routine},#{rows.ss_lunchAllowance},#{rows.ss_vehicleSubsidy},#{rows.pr_rewardAmount},
+            #{rows.pr_amountPayable},#{rows.pr_payrollRemarks},#{rows.pr_ext2})
+        </foreach>
+    </insert>
+    
+    <select id="selectAllNotAduitPayrollRecord" resultType="payrollRecord">
+        select pr.* from payrollrecord pr
+        where pr.pr_ext2 = 0;
+    </select>
+    
+    <update id="updatePayrollRecordAduitStatus" parameterType="payrollRecord">
+        update payrollRecord set pr_ext2 = #{pr_ext2},pr_rewardAmount = #{pr_rewardAmount},pr_amountPayable = #{pr_amountPayable}
+        where pr_id = #{pr_id};
+    </update>
+    
+    <select id="selectAllPayrollRecord" resultType="payrollRecord">
+        select pr.* from payrollrecord pr
+        <where>
+            <if test="emp_name != '' and emp_name != null">
+                pr.emp_name like "%"#{emp_name}"%"
+            </if>
+            <if test="pr_registrant != '' and pr_registrant != null">
+                and pr.pr_registrant like "%"#{pr_registrant}"%"
+            </if>
+            <if test="pr_registrationTimeStart != '' and pr_registrationTimeStart != null">
+                and pr.pr_registrationTime &gt;= #{pr_registrationTimeStart}
+            </if>
+            <if test="pr_registrationTimeEnd != '' and pr_registrationTimeEnd != null">
+                and pr.pr_registrationTime &lt;= #{pr_registrationTimeEnd}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+    
+</mapper>

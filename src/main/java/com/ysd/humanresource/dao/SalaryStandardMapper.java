@@ -8,58 +8,58 @@ import com.ysd.humanresource.entity.SalaryStandard;
 public interface SalaryStandardMapper {
 	
 	/**
-	 * ���н���׼
-	 * @param salaryStandard ����н���׼��Ϣ��ʵ����
-	 * @return ��Ӱ�������
+	 * 添加薪酬标准
+	 * @param salaryStandard 包含薪酬标准信息的实体类
+	 * @return 受影响的行数
 	 */
 	Integer insertSalaryStandard(SalaryStandard salaryStandard);
 	
 	/**
-	 * ����н�����Ʋ��Ҹ�н���׼�Ƿ����
-	 * @param salaryStandard ����н���׼��Ϣ��ʵ����
-	 * @return ��ѯ���ķ�������������
+	 * 查询符合薪酬标准名称的薪酬标准数量
+	 * @param salaryStandard 包含薪酬标准信息的实体类
+	 * @return 查询到的数量
 	 */
 	Integer selectCountBySalaryStandardName(SalaryStandard salaryStandard);
 	
 	/**
-	 * ��ѯδ��˵�н���׼
-	 * @param pagination ������ҳ��Ϣ��ʵ����
-	 * @return ��ѯ����δ��˵�н����Ϣ
+	 * 查询未审核的薪酬标准
+	 * @param pagination 包含分页信息的分页类
+	 * @return 查询到的未审核的薪酬标准集合
 	 */
 	List<SalaryStandard> selectAllUncheckSalaryStandard(Pagination pagination);
 	
 	/**
-	 * ��ѯδ��˵�н���׼����
-	 * @param pagination ������ҳ��Ϣ��ʵ����
-	 * @return ��ѯ����δ��˵�н����Ϣ����
+	 * 查询未审核的薪酬标准数量
+	 * @param pagination 包含分页信息的分页类
+	 * @return 查询到的未审核的薪酬标准数量
 	 */
 	Integer selectAllUncheckSalaryStandardCount(Pagination pagination);
 	
 	/**
-	 * ����н�����ƺ�id���Ҹ�н���׼�Ƿ����
-	 * @param salaryStandard ����н���׼��Ϣ��ʵ����
-	 * @return ��ѯ���ķ�������������
+	 * 根据薪酬标准姓名和id查找符合标准的薪酬标准数量
+	 * @param salaryStandard 包含薪酬标准信息的实体类
+	 * @return 查询到的符合条件的数量
 	 */
 	Integer selectCountBySalaryStandardNameAndId(SalaryStandard salaryStandard);
 	
 	/**
-	 * ͨ��н���׼��˺����id�޸�н���׼
-	 * @param salaryStandard ����н���׼��Ϣ��ʵ����
-	 * @return ��Ӱ�������
+	 * 根据薪酬标准id修改薪酬标准信息
+	 * @param salaryStandard 包含薪酬标准信息的实体类
+	 * @return 受影响的行数
 	 */
 	Integer updateSalaryStandardById(SalaryStandard salaryStandard);
 	
 	/**
-	 * ��ѯ����ͨ����˵�н���׼
-	 * @param pagination ������ҳ��Ϣ��ʵ����
-	 * @return ��ѯ����ͨ����˵�н���׼
+	 * 查询通过审核的薪酬标准
+	 * @param pagination 包含分页信息的分页类
+	 * @return 查询到的通过审核的薪酬标准集合
 	 */
 	List<SalaryStandard> selectAllCheckedSalaryStandard(Pagination pagination);
 	
 	/**
-	 * ��ѯ����ͨ����˵�н���׼����
-	 * @param pagination ������ҳ��Ϣ��ʵ����
-	 * @return ��ѯ����ͨ����˵�н���׼����
+	 * 查询通过审核的薪酬标准数量
+	 * @param pagination 包含分页信息的分页类
+	 * @return 查询到的通过审核的薪酬标准数量
 	 */
 	Integer selectAllCheckedSalaryStandardCount(Pagination pagination);
 	

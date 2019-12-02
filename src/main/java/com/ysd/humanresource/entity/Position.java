@@ -1,5 +1,7 @@
 package com.ysd.humanresource.entity;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,6 +12,7 @@ public class Position {
 	private String pos_name;
 	
 	private Department department;
-	
 	private SalaryStandard salaryStandard;
+	private List<Employee> employeeList;
+	
 }
