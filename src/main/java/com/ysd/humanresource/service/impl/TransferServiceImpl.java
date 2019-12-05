@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ysd.humanresource.dao.TransferMapper;
 import com.ysd.humanresource.entity.Account;
-import com.ysd.humanresource.entity.Employee;
 import com.ysd.humanresource.entity.TransFerrecord;
+import com.ysd.humanresource.enums.TransFerrecordStatusEnum;
 import com.ysd.humanresource.service.TransferService;
 @Service
 public class TransferServiceImpl implements TransferService {
@@ -23,11 +23,12 @@ public class TransferServiceImpl implements TransferService {
 	}
 
 	
-
 	@Override
-	public Integer updateTransfer(Employee employee) {
+	public Integer insertTransfer(TransFerrecord transFerrecord) {
 		// TODO Auto-generated method stub
-		Integer updateTransfer = transferMapper.updateTransfer(employee);
-		return updateTransfer;
+		transFerrecord.setTf_auditStatus(TransFerrecordStatusEnum.TRANSFERRECORDWAITADUIT.getCode());
+		Integer insertTransfer = transferMapper.insertTransfer(transFerrecord);
+		return insertTransfer;
 	}
+
 }

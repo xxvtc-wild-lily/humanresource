@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ysd.humanresource.dao.TransferMapper">
-	<resultMap type="account" id="accountMap">
-		<id column="Acc_id" property="Acc_id"/>
-		<result column="Acc_telPhone" property="Acc_telPhone"/>
-		<result column="Acc_email" property="Acc_email"/>
-		<result column="Acc_password" property="Acc_password"/>
-		<result column="Acc_salt" property="Acc_salt"/>
-		<result column="Acc_salt" property="Acc_salt"/>
-		<result column="Acc_lockStatus" property="Acc_lockStatus"/>
-		<result column="Acc_lockTime" property="Acc_lockTime"/>
+<mapper namespace="com.ysd.humanresource.dao.TransferrecordMapper">
+	<resultMap type="transFerrecord" id="transFerrecordMap">
+		<id column="tf_id" property="tf_id"/>
+		<result column="tf_fileNumber" property="tf_fileNumber"/>
+		<result column="tf_originalDepartment" property="tf_originalDepartment"/>
+		<result column="tf_originalPosition" property="tf_originalPosition"/>
+		<result column="tf_originalSalaryStandard" property="tf_originalSalaryStandard"/>
+		<result column="tf_newDepartment" property="tf_newDepartment"/>
+		<result column="tf_newPosition" property="tf_newPosition"/>
+		<result column="tf_newSalaryStandard" property="tf_newSalaryStandard"/>
+		<result column="tf_registrant" property="tf_registrant"/>
+		<result column="tf_registrationTime" property="tf_registrationTime"/>
+		<result column="tf_mobilizingReason" property="tf_mobilizingReason"/>
+		<result column="tf_auditor" property="tf_auditor"/>
+		<result column="tf_auditTime" property="tf_auditTime"/>
+		<result column="tf_auditOpinion" property="tf_auditOpinion"/>
+		<result column="tf_auditStatus" property="tf_auditStatus"/>
 		<association property="employee" javaType="employee">
 			<id column="emp_id" property="emp_id"/>
 			<result column="emp_fileNumber" property="emp_fileNumber"/>
@@ -73,37 +80,44 @@
 		</association>
 	</resultMap>
 	
-	<select id="selectByStatus" parameterType="Account" resultMap="accountMap">
-		select e.emp_id,e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_name,ss.ss_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
-			from employee e left join account a 
-			on a.emp_id=e.emp_id left join position p
-			on e.pos_id=p.pos_id left join department d
-			on p.dep_id=d.dep_id left join salarystandard ss
-			on p.ss_id=ss.ss_id
-			<where>
-				<if test="acc_lockStatus !=null">
-					and a.acc_lockStatus=#{acc_lockStatus}
-				</if>
-				<if test="dep_name !='' and dep_name != null">
-					and d.dep_name=#{dep_name}
-				</if>
-				<if test="emp_fileNumber !='' and emp_fileNumber != null">
-					and e.emp_fileNumber=#{emp_fileNumber}
-				</if>
-				<if test="emp_registrantTime !='' and emp_registrantTime != null">
-					and e.emp_registrantTime=#{emp_registrantTime}
-				</if>
-			</where>
+	<select id="selectTransFerrecordStatus" parameterType="transFerrecord" resultMap="transFerrecordMap">
+		select tf.*,e.emp_name
+		from transferrecord tf left join employee e 
+		on tf.emp_id=e.emp_id
 	</select>
-	<insert id="insertTransfer" parameterType="transFerrecord">
-		insert into transferrecord 
-		(tf_fileNumber,emp_id,tf_originalDepartment,tf_originalPosition,tf_originalSalaryStandard,
-			tf_newDepartment,tf_newPosition,tf_newSalaryStandard,tf_registrant,tf_registrationTime,tf_mobilizingReason,tf_auditStatus) 
-		values(#{tf_fileNumber},#{emp_id},#{tf_originalDepartment},#{tf_originalPosition},#{tf_originalSalaryStandard},
-			#{tf_newDepartment},#{tf_newPosition},#{tf_newSalaryStandard},#{tf_registrant},now(),#{tf_mobilizingReason},#{tf_auditStatus})
 	
-	</insert>
+	<update id="updateTransfer" parameterType="transFerrecord">
+		update transferrecord tf 
+			left join employee e 
+			on tf.emp_id=e.emp_id 
+			left join position p 
+			on e.pos_id=p.pos_id 
+			left join department d
+			on p.dep_id=d.dep_id 
+			left join salarystandard ss 
+			on p.ss_id=ss.ss_id 
+			set
+				<if test="dep_name != ''  and dep_name != null">
+					d.dep_name=#{tf_newDepartment},
+				</if>
+				<if test="pos_name != ''  and pos_name != null">
+					p.pos_name=#{tf_newPosition},
+				</if>
+				<if test="ss_name != ''  and ss_name != null">
+					ss.ss_name=#{tf_newSalaryStandard},
+				</if>
+				<if test="tf_auditStatus !=null">
+					tf.tf_auditStatus=#{tf_auditStatus},
+				</if>
+				tf.tf_auditor=#{tf_auditor},
+				tf.tf_auditOpinion=#{tf_auditOpinion}
+				
+			<where>
+				tf.tf_fileNumber=#{tf_fileNumber}
+			</where>
+	</update>
 </mapper>
+
 
 
 

@@ -3,7 +3,6 @@ package com.ysd.humanresource.dao;
 import java.util.List;
 
 import com.ysd.humanresource.entity.Account;
-import com.ysd.humanresource.entity.Employee;
 import com.ysd.humanresource.entity.TransFerrecord;
 
 public interface TransferMapper {
@@ -14,5 +13,12 @@ public interface TransferMapper {
 	 */
 	List<Account> selectByStatus(Account account);
 	
-	Integer updateTransfer(Employee employee);
+	/**
+	 * 员工调动管理员工调动信息添加
+	 * @param transFerrecord
+	 * @return
+	 */
+	Integer insertTransfer(TransFerrecord transFerrecord);
+	
+	
 }

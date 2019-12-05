@@ -27,4 +27,9 @@ public class TransFerrecord {
 	private String tf_auditOpinion;
 	private Integer tf_auditStatus;
 	
+	private Employee employee;
+	private String dep_name;
+	private String pos_name;
+	private String ss_name;
+	
 }
