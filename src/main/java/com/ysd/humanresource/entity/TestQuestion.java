@@ -10,7 +10,7 @@ public class TestQuestion {
 	
 	private Integer tq_id;
 	private String tq_department;
-	private String tq_positon;
+	private String tq_position;
 	private String tq_registrant;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date tq_registrationTime;

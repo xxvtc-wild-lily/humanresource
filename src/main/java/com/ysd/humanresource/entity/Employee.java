@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Employee {
 	
-	private Integer emp_id;
+	private  Integer 	emp_id;
 	private String emp_fileNumber;
 	private String emp_name;
 	private Integer emp_sex;

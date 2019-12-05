@@ -25,5 +25,9 @@ public class Pagination<T> {
 	private String pr_registrant;
 	private String pr_registrationTimeStart;
 	private String pr_registrationTimeEnd;
+
+	//试题查询条件
+	private String department;
+	private String position;
 	
 }
