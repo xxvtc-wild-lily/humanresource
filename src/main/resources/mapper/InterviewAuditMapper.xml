@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ysd.humanresource.dao.InterviewAuditMapper">
+	<resultMap id='interviewAuditMap' type='interviewAudit'> 
+		<id column='ia_id' property='ia_id'/> 
+		 <result column='ia_interviewTimes' property='ia_interviewTimes'/> 
+		 <result column='ia_imageEvaluation' property='ia_imageEvaluation'/> 
+		 <result column='ia_eloquenceEvaluation' property='ia_eloquenceEvaluation'/> 
+		 <result column='ia_oraEnglishAbility' property='ia_oraEnglishAbility'/> 
+		 <result column='ia_strainCapacity' property='ia_strainCapacity'/> 
+		 <result column='ia_EQ' property='ia_EQ'/> 
+		 <result column='ia_IQ' property='ia_IQ'/> 
+		 <result column='ia_comprehensiveQuality' property='ia_comprehensiveQuality'/> 
+		 <result column='ia_interviewer' property='ia_interviewer'/> 
+		 <result column='ia_interviewTime' property='ia_interviewTime'/> 
+		 <result column='ia_interviewEvaluation' property='ia_interviewEvaluation'/> 
+		 <result column='ia_interviewOpinion' property='ia_interviewOpinion'/> 
+		 <result column='ia_screeningPeople' property='ia_screeningPeople'/> 
+		 <result column='ia_screeningTime' property='ia_screeningTime'/> 
+		 <result column='ia_employmentApplicationComment' property='ia_employmentApplicationComment'/> 
+		 <result column='re_id' property='re_id'/>
+		<association property="resume" javaType="resume">
+			 <id column='re_id' property='re_id'/> 
+			 <result column='re_recruitmentType' property='re_recruitmentType'/> 
+			 <result column='re_department' property='re_department'/> 
+			 <result column='re_position' property='re_position'/> 
+			 <result column='re_name' property='re_name'/> 
+			 <result column='re_sex' property='re_sex'/> 
+			 <result column='re_email' property='re_email'/> 
+			 <result column='re_telPhone' property='re_telPhone'/> 
+			 <result column='re_address' property='re_address'/> 
+			 <result column='re_postalCode' property='re_postalCode'/> 
+			 <result column='re_nationality' property='re_nationality'/> 
+			 <result column='re_birthAddress' property='re_birthAddress'/> 
+			 <result column='re_age' property='re_age'/> 
+			 <result column='re_birthday' property='re_birthday'/> 
+			 <result column='re_nation' property='re_nation'/> 
+			 <result column='re_faith' property='re_faith'/> 
+			 <result column='re_politicalOutlook' property='re_politicalOutlook'/> 
+			 <result column='re_IDnumber' property='re_IDnumber'/> 
+			 <result column='re_graduateSchool' property='re_graduateSchool'/> 
+			 <result column='re_qualifications' property='re_qualifications'/> 
+			 <result column='re_yearsOfEducation' property='re_yearsOfEducation'/> 
+			 <result column='re_major' property='re_major'/> 
+			 <result column='re_salaryRequirement' property='re_salaryRequirement'/> 
+			 <result column='re_speciality' property='re_speciality'/> 
+			 <result column='re_hobby' property='re_hobby'/> 
+			 <result column='re_personalResume' property='re_personalResume'/> 
+			 <result column='re_remarks' property='re_remarks'/> 
+			 <result column='re_registrationTime' property='re_registrationTime'/> 
+			 <result column='re_recommender' property='re_recommender'/> 
+			 <result column='re_recommendedTime' property='re_recommendedTime'/> 
+			 <result column='re_recommendation' property='re_recommendation'/> 
+			 <result column='re_machineTestResult' property='re_machineTestResult'/> 
+			 <result column='re_WrittenTestResult' property='re_WrittenTestResult'/>
+		</association>  
+	</resultMap>
+	<select id="selectResumeInterviewAudit" parameterType="pagination" resultMap="interviewAuditMap">
+		select inte.*,re.* from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion &lt; 0
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectResumeInterviewAuditCount" parameterType="pagination" resultType="int">
+		select count(inte.ia_id) from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion &lt; 0
+	</select>
+	<update id="updateInterviewAuditByReId" parameterType="interviewAudit">
+		update interviewaudit 			
+		set ia_interviewOpinion=#{ia_interviewOpinion},ia_screeningPeople=#{ia_screeningPeople},ia_screeningTime=#{ia_screeningTime},ia_employmentApplicationComment=#{ia_employmentApplicationComment}
+		where re_id=#{re_id}
+	</update>
+</mapper>

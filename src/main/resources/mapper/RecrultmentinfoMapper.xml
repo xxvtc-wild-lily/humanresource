@@ -4,8 +4,22 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ysd.humanresource.dao.RecrultmentinfoMapper">
+	<select id="selectRecruItmentionfo" parameterType="pagination" resultType="recruItmentinfo" >
+		select * from recruitmentinfo limit #{page},#{pageSize}
+	</select>
+	<select id="selectRecruItmentionfoCount" parameterType="pagination" resultType="int">
+		select count(ri_id) from recruitmentinfo
+	</select>
 	<insert id="addRecrultmentinfo" parameterType="recruItmentinfo">
 		insert into recruitmentinfo (ri_recruitmentType,ri_department,ri_position,ri_recruitingNumber,ri_closingDate,ri_registrant,ri_registrationTime,ri_jobDescription,ri_recruitmentRequirements) 
-		values (#{ri_recruitmentType},#{ri_department},#{ri_positon},#{ri_recruitingNumber},#{ri_closingDate},#{ri_registrant},#{ri_registrationTime},#{ri_jobDescription},#{ri_recruitmentRequirements})
+		values (#{ri_recruitmentType},#{ri_department},#{ri_position},#{ri_recruitingNumber},#{ri_closingDate},#{ri_registrant},#{ri_registrationTime},#{ri_jobDescription},#{ri_recruitmentRequirements})
 	</insert>
+	<delete id="delectRecruItmentionfoById" parameterType="int">
+		delete from recruitmentinfo where ri_id=#{ri_id} 
+	</delete>
+	<update id="updateRecruItmentionfoById" parameterType="recruItmentinfo">
+		update recruitmentinfo 
+		set ri_recruitmentType=#{ri_recruitmentType},ri_recruitingNumber=#{ri_recruitingNumber},ri_closingDate=#{ri_closingDate},ri_jobDescription=#{ri_jobDescription},ri_alteredPerson=#{ri_alteredPerson},ri_changeTime=#{ri_changeTime},ri_recruitmentRequirements=#{ri_recruitmentRequirements}
+		where ri_id=#{ri_id}
+	</update>
 </mapper>

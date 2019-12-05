@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysd.humanresource.dao.ResumeMapper">
+	<insert id="inResume" parameterType="resume">
+		insert into resume (re_department,re_position,re_recruitmentType,re_name,re_sex,re_email,re_telPhone,re_address,re_postalCode,re_nationality,re_birthAddress,re_birthday,re_age,re_nation,re_faith,re_politicalOutlook,re_graduateSchool,re_IDnumber,re_qualifications,re_major,re_yearsOfEducation,re_salaryRequirement,re_speciality,re_hobby,re_registrationTime,re_personalResume,re_remarks) 
+			values (#{re_department},#{re_position},#{re_recruitmentType},#{re_name},#{re_sex},#{re_email},#{re_telPhone},#{re_address},#{re_postalCode},#{re_nationality},#{re_birthAddress},#{re_birthday},#{re_age},#{re_nation},#{re_faith},#{re_politicalOutlook},#{re_graduateSchool},#{re_IDnumber},#{re_qualifications},#{re_major},#{re_yearsOfEducation},#{re_salaryRequirement},#{re_speciality},#{re_hobby},#{re_registrationTime},#{re_personalResume},#{re_remarks})
+	</insert>
+	<select id="selectByNameAndShouJiHao" parameterType="resume" resultType="resume">
+		select re_id,re_department,re_position from resume where re_name=#{re_name} and re_telPhone =#{re_telPhone}
+	</select>
+	<select id="selectResumeByDuoTiaoJian" parameterType="pagination" resultType="resume">
+		select re.* from resume re JOIN interviewaudit inte on re.re_id=inte.re_id
+		<where>
+			inte.ia_interviewOpinion=1
+            <if test="!department.equals('--请选择--')">
+                and re_department = #{department}
+            </if>
+            <if test="!position.equals('--请选择--')">
+                and re_position =#{position}
+            </if>
+         </where>
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectResumeByDuoTiaoJianCount" parameterType="pagination" resultType="int">
+		select count(re.re_id) from resume re JOIN interviewaudit inte on re.re_id=inte.re_id
+		<where>
+			inte.ia_interviewOpinion=1
+            <if test="!department.equals('--请选择--')">
+                and re_department = #{department}
+            </if>
+            <if test="!position.equals('--请选择--')">
+                and re_position =#{position}
+            </if>
+         </where>
+		limit #{page},#{pageSize}
+	</select>
+	<insert id="interviewRegistration" parameterType="int">
+		insert into interviewaudit (ia_interviewOpinion,re_id) 
+			values (1,#{re_id})
+	</insert>
+	<select id="selectResumeMaxReid" resultType="int">
+		select max(re_id) from resume
+	</select>
+	<update id="updateInterviewAudit" parameterType="interviewAudit">
+		update interviewaudit 
+			set ia_imageEvaluation=#{ia_imageEvaluation},ia_eloquenceEvaluation=#{ia_eloquenceEvaluation},ia_oraEnglishAbility=#{ia_oraEnglishAbility},ia_strainCapacity=#{ia_strainCapacity},ia_EQ=#{ia_EQ},ia_IQ=#{ia_IQ},ia_comprehensiveQuality=#{ia_comprehensiveQuality},ia_interviewer=#{ia_interviewer},ia_interviewTime=#{ia_interviewTime},ia_interviewEvaluation=#{ia_interviewEvaluation},Ia_interviewOpinion=-1
+			where re_id=#{re_id}
+	</update>
+	
+</mapper>

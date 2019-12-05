@@ -11,7 +11,7 @@ public class RecruItmentinfo {
 	private Integer ri_id;
 	private String ri_recruitmentType;
 	private String ri_department;
-	private String ri_positon;
+	private String ri_position;
 	private Integer ri_recruitingNumber;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ri_closingDate;
