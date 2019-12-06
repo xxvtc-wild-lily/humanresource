@@ -23,4 +23,16 @@ public interface InterviewAuditMapper {
 	 * @return
 	 */
 	public Integer updateInterviewAuditByReId(InterviewAudit inte);
+	/**
+	 * 根据简历ID删除面试登记信息
+	 * @param re_id
+	 * @return
+	 */
+	public Integer deleteInterviewAuditByReId(Integer re_id);
+	/**
+	 * 根据简历ID删除简历
+	 * @param re_id
+	 * @return
+	 */
+	public Integer deleteResumeByReId(Integer re_id);
 }
