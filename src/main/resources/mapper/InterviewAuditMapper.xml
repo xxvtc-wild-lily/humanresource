@@ -72,4 +72,10 @@
 		set ia_interviewOpinion=#{ia_interviewOpinion},ia_screeningPeople=#{ia_screeningPeople},ia_screeningTime=#{ia_screeningTime},ia_employmentApplicationComment=#{ia_employmentApplicationComment}
 		where re_id=#{re_id}
 	</update>
+	<delete id="deleteInterviewAuditByReId" parameterType="int">
+		
+	</delete>
+	<delete id="deleteResumeByReId">
+		
+	</delete>
 </mapper>
