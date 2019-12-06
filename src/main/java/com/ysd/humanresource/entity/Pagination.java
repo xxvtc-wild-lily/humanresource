@@ -26,4 +26,15 @@ public class Pagination<T> {
 	private String pr_registrationTimeStart;
 	private String pr_registrationTimeEnd;
 	
+	// 角色管理
+	private String r_name;
+	
+	// 员工管理
+	private Integer emp_sex;
+	private Integer emp_ageStart;
+	private Integer emp_ageEnd;
+	private String emp_birthdayStart;
+	private String emp_birthdayEnd;
+	private Integer pos_id;
+	
 }

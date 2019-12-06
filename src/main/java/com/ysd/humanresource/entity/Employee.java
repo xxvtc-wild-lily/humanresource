@@ -1,6 +1,7 @@
 package com.ysd.humanresource.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,4 +45,5 @@ public class Employee {
 	private String emp_remarks;
 	
 	private Position position;
+	private List<Account> account;
 }
