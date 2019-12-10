@@ -12,7 +12,7 @@ public class InterviewAudit {
 	private Integer ia_interviewTimes;
 	private String ia_imageEvaluation;
 	private String ia_eloquenceEvaluation;
-	private String ia_oralEnglishAbility;
+	private String ia_oraEnglishAbility;
 	private String ia_strainCapacity;
 	private String ia_EQ;
 	private String ia_IQ;
@@ -26,5 +26,7 @@ public class InterviewAudit {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ia_screeningTime;
 	private String ia_employmentApplicationComment;
+	private Integer re_id;
+	private Resume resume;
 	
 }

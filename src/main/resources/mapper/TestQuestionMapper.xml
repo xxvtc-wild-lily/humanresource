@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysd.humanresource.dao.TestQuestionMapper">
+	<select id="selectTestQuestion" parameterType="pagination" resultType="testQuestion">
+		select * from testquestion 
+		<where>
+            <if test="!department.equals('--请选择--')">
+                and tq_department = #{department}
+            </if>
+            <if test="!position.equals('--请选择--')">
+                and tq_position =#{position}
+            </if>
+         </where>
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectTestQuestionCount" parameterType="pagination" resultType="int">
+		select count(tq_id) from testquestion 
+		<where>
+            <if test="!department.equals('--请选择--')">
+                and tq_department = #{department}
+            </if>
+            <if test="!position.equals('--请选择--')">
+                and tq_position =#{position}
+            </if>
+         </where>
+	</select>
+	<insert id="addTestQuestionCount" parameterType="testQuestion">
+		insert into testquestion (tq_department,tq_position,tq_registrant,tq_registrationTime,tq_type,tq_stem,tq_answerA,tq_answerB,tq_answerC,tq_answerD,tq_answerE,tq_correctAnswer) 
+		values (#{tq_department},#{tq_position},#{tq_registrant},#{tq_registrationTime},#{tq_type},#{tq_stem},#{tq_answerA},#{tq_answerB},#{tq_answerC},#{tq_answerD},#{tq_answerE},#{tq_correctAnswer})
+	</insert>
+	<select id="selectTestQuestionByBuMenAndZhiWei" parameterType="resume" resultType="testQuestion">
+		select * from testquestion  where tq_department=#{re_department} and tq_position=#{re_position} order by rand() limit 20;
+	</select>
+</mapper>

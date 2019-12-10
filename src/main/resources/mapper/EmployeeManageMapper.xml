@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.EmployeeManageMapper">
+    
+    <!--员工表-->
+    <resultMap type="employee" id="empMap">
+        <id property="emp_id" column="emp_id" />
+        <result property="emp_fileNumber" column="emp_fileNumber" />
+        <result property="emp_name" column="emp_name" />
+        <result property="emp_sex" column="emp_sex" />
+        <result property="emp_picture" column="emp_picture" />
+        <result property="emp_email" column="emp_email" />
+        <result property="emp_telPhone" column="emp_telPhone" />
+        <result property="emp_address" column="emp_address" />
+        <result property="emp_postalCode" column="emp_postalCode" />
+        <result property="emp_nationality" column="emp_nationality" />
+        <result property="emp_birthAddress" column="emp_birthAddress" />
+        <result property="emp_age" column="emp_age" />
+        <result property="emp_birthday" column="emp_birthday" />
+        <result property="emp_nation" column="emp_nation" />
+        <result property="emp_faith" column="emp_faith" />
+        <result property="emp_politicalOutlook" column="emp_politicalOutlook" />
+        <result property="emp_IDnumber" column="emp_IDnumber" />
+        <result property="emp_socialSecurityNumber" column="emp_socialSecurityNumber" />
+        <result property="emp_graduateSchool" column="emp_graduateSchool" />
+        <result property="emp_qualifications" column="emp_qualifications" />
+        <result property="emp_yearsOfEducation" column="emp_yearsOfEducation" />
+        <result property="emp_major" column="emp_major" />
+        <result property="emp_openingBank" column="emp_openingBank" />
+        <result property="emp_bankAccount" column="emp_bankAccount" />
+        <result property="emp_registrantTime" column="emp_registrantTime" />
+        <result property="emp_speciality" column="emp_speciality" />
+        <result property="emp_hobby" column="emp_hobby" />
+        <result property="emp_personalResume" column="emp_personalResume" />
+        <result property="emp_familyRelationsInfo" column="emp_familyRelationsInfo" />
+        <result property="emp_registrant" column="emp_registrant" />
+        <result property="pos_id" column="pos_id" />
+        <result property="emp_remarks" column="emp_remarks" />
+        
+        <!--职位表-->
+        <association property="position" javaType="position">
+            <id property="pos_id" column="pos_id" />
+            <result property="dep_id" column="dep_id" />
+            <result property="ss_id" column="ss_id" />
+            <result property="pos_name" column="pos_name" />
+            
+            <!-- 部门表 -->
+	        <association property="department" javaType="department" >
+	            <id property="dep_id" column="dep_id" />
+	            <result property="dep_name" column="dep_name" />
+	            <result property="dep_lastPayday" column="dep_lastPayday" />
+	            <result property="dep_salaryStatus" column="dep_salaryStatus" />
+	        </association>
+            
+        </association>
+        
+    </resultMap>
+    
+    <select id="selectAllEmployee" parameterType="pagination" resultMap="empMap">
+        select e.*,p.pos_id,pos_name,d.dep_id,d.dep_name
+        from employee e inner join position p on e.pos_id = p.pos_id inner join department d on p.dep_id = d.dep_id
+        <where>
+            <if test="emp_name != null and emp_name != ''">
+                e.emp_name like "%"#{emp_name}"%"
+            </if>
+            <if test="emp_sex != null">
+                and e.emp_sex = #{emp_sex}
+            </if>
+            <if test="emp_ageStart != null and emp_ageStart != ''">
+                and e.emp_age &gt;= #{emp_ageStart}
+            </if>
+            <if test="emp_ageEnd != null and emp_ageEnd != ''">
+                and e.emp_age &lt;= #{emp_ageEnd}
+            </if>
+            <if test="emp_birthdayStart != null and emp_birthdayStart != ''">
+                and e.emp_birthday &gt;= #{emp_birthdayStart}
+            </if>
+            <if test="emp_birthdayEnd != null and emp_birthdayEnd != ''">
+                and e.emp_birthday &lt;= #{emp_birthdayEnd}
+            </if>
+            <if test="pos_id != null and pos_id != ''">
+                and e.pos_id = #{pos_id}
+            </if>
+        </where>
+        limit #{page},#{pageSize};
+    </select>
+    
+    <select id="selectAllEmployeeCount" parameterType="employee" resultType="_int">
+        select count(1)
+        from employee e
+        <where>
+            <if test="emp_name != null and emp_name != ''">
+                e.emp_name like "%"#{emp_name}"%"
+            </if>
+            <if test="emp_sex != null">
+                and e.emp_sex = #{emp_sex}
+            </if>
+            <if test="emp_ageStart != null and emp_ageStart != ''">
+                and e.emp_age &gt;= #{emp_ageStart}
+            </if>
+            <if test="emp_ageEnd != null and emp_ageEnd != ''">
+                and e.emp_age &lt;= #{emp_ageEnd}
+            </if>
+            <if test="emp_birthdayStart != null and emp_birthdayStart != ''">
+                and e.emp_birthday &gt;= #{emp_birthdayStart}
+            </if>
+            <if test="emp_birthdayEnd != null and emp_birthdayEnd != ''">
+                and e.emp_birthday &lt;= #{emp_birthdayEnd}
+            </if>
+            <if test="pos_id != null and pos_id != ''">
+                and e.pos_id = #{pos_id}
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectAllDepartment" resultType="department">
+        select dep_id,dep_name from department;
+    </select>
+    
+    <select id="selectAllPosition" parameterType="department" resultType="position">
+        select pos_id,pos_name from position where dep_id = #{dep_id};
+    </select>
+    
+</mapper>

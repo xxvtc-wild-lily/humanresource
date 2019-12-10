@@ -1,6 +1,7 @@
 package com.ysd.humanresource.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,7 +9,7 @@ import lombok.Data;
 @Data
 public class Employee {
 	
-	private Integer emp_id;
+	private  Integer 	emp_id;
 	private String emp_fileNumber;
 	private String emp_name;
 	private Integer emp_sex;
@@ -47,4 +48,5 @@ public class Employee {
 	private String dep_name;
 	private String pos_name;
 	private String ss_name;
+	private List<Account> account;
 }

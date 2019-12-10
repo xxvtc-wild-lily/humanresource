@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.RoleManageMapper">
+    
+    <!-- 职位表 -->
+    <resultMap type="role" id="roleMap">
+        <id property="r_id" column="r_id" />
+        <result property="r_name" column="r_name" />
+        
+        <!-- 部门表 -->
+        <association property="module" javaType="module" >
+            <id property="m_id" column="m_id" />
+            <result property="m_name" column="m_name" />
+            <result property="m_parentId" column="m_parentId" />
+            <result property="m_path" column="m_path" />
+            <result property="m_weight" column="m_weight" />
+        </association>
+        
+    </resultMap>
+    
+    <select id="selectAllRole" parameterType="pagination" resultMap="roleMap">
+        select r.* from role r 
+        <where>
+            <if test="r_name != null and r_name != ''">
+                r.r_name like "%"#{r_name}"%"
+            </if>
+        </where>
+        limit #{page},#{pageSize};
+    </select>
+    
+    <select id="selectAllRoleCount" parameterType="pagination" resultType="_int">
+        select count(1) from role r 
+        <where>
+            <if test="r_name != null and r_name != ''">
+                r_name like "%"#{r_name}"%"
+            </if>
+        </where>
+    </select>
+    
+    <update id="updateRoleById" parameterType="role">
+        update role set r_name = #{r_name} where r_id = #{r_id};
+    </update>
+    
+    <select id="selectAllModule" resultType="module">
+        select m.* from module m;
+    </select>
+    
+    <select id="selectModuleByRole" parameterType="role" resultType="module">
+        select m.*
+        from role r inner join rolemodule rm on r.r_id = rm.r_id inner join module m on rm.m_id = m.m_id
+        where rm.r_id = #{r_id}
+    </select>
+    
+    <delete id="deleteRoleModuleByRole" parameterType="_int">
+        delete from roleModule where r_id = #{r_id};
+    </delete>
+    
+    <!-- <delete id="delete" parameterType="list">
+        delete from t_customer where 
+        <foreach collection="list" item="ids" separator=",">
+            r_id = #{ids.id}
+        </foreach>
+    </delete> -->
+    
+    <insert id="insertNewRoleModule" parameterType="list">
+        insert into rolemodule(r_id,m_id) values
+        <foreach collection="list" item="list" separator=",">
+            (#{list.r_id},#{list.m_id})
+        </foreach>
+    </insert>
+    
+</mapper>
