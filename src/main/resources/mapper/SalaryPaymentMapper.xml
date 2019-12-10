@@ -61,7 +61,7 @@
             <result property="emp_qualifications" column="emp_qualifications" />
             <result property="emp_yearsOfEducation" column="emp_yearsOfEducation" />
             <result property="emp_major" column="emp_major" />
-            <result property="emp_openingBank" column="emp_openingBank" />
+            <result property="emp_openBank" column="emp_openBank" />
             <result property="emp_bankAccount" column="emp_bankAccount" />
             <result property="emp_registrantTime" column="emp_registrantTime" />
             <result property="emp_speciality" column="emp_speciality" />
