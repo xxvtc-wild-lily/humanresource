@@ -1,18 +1,20 @@
-package com.ysd.humanresource.entity;
+package com.ysd.humanresource.DTO;
 
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
+
 @Data
-public class Employee {
+public class EmployeeDTO {
 	
 	private Integer emp_id;
 	private String emp_fileNumber;
 	private String emp_name;
 	private Integer emp_sex;
-	private String emp_picture;
+	private MultipartFile emp_picture;
 	private String emp_email;
 	private String emp_telPhone;
 	private String emp_address;
@@ -43,6 +45,4 @@ public class Employee {
 	private Integer pos_id;
 	private String emp_remarks;
 	
-	private Position position;
-	private Account account;
 }

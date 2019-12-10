@@ -26,7 +26,7 @@
         <result property="emp_qualifications" column="emp_qualifications" />
         <result property="emp_yearsOfEducation" column="emp_yearsOfEducation" />
         <result property="emp_major" column="emp_major" />
-        <result property="emp_openingBank" column="emp_openingBank" />
+        <result property="emp_openBank" column="emp_openBank" />
         <result property="emp_bankAccount" column="emp_bankAccount" />
         <result property="emp_registrantTime" column="emp_registrantTime" />
         <result property="emp_speciality" column="emp_speciality" />
@@ -120,5 +120,78 @@
     <select id="selectAllPosition" parameterType="department" resultType="position">
         select pos_id,pos_name from position where dep_id = #{dep_id};
     </select>
+    
+    <update id="updateEmployeeInfo" parameterType="employee">
+        update employee set emp_name = #{emp_name},emp_sex = #{emp_sex},emp_picture = #{emp_picture},emp_email = #{emp_email},
+        emp_telPhone = #{emp_telPhone},emp_address = #{emp_address},emp_postalCode = #{emp_postalCode},emp_nationality = #{emp_nationality},
+        emp_birthAddress = #{emp_birthAddress},emp_age = #{emp_age},emp_birthday = #{emp_birthday},emp_nation = #{emp_nation},emp_faith = #{emp_faith},
+        emp_politicalOutlook = #{emp_politicalOutlook},emp_IDnumber = #{emp_IDnumber},emp_socialSecurityNumber = #{emp_socialSecurityNumber},
+        emp_graduateSchool = #{emp_graduateSchool},emp_qualifications = #{emp_qualifications},emp_yearsOfEducation = #{emp_yearsOfEducation},
+        emp_major = #{emp_major},emp_openBank = #{emp_openBank},emp_bankAccount = #{emp_bankAccount},emp_speciality = #{emp_speciality},
+        emp_hobby = #{emp_hobby},emp_personalResume = #{emp_personalResume},emp_familyRelationsInfo = #{emp_familyRelationsInfo},emp_remarks = #{emp_remarks}
+        where emp_id = #{emp_id};
+    </update>
+    
+    <select id="selectAllRole" resultType="role">
+        select r.* from role r;
+    </select>
+    
+    <select id="selectRoleByEmployee" parameterType="_int" resultType="role">
+        select r.* from role r inner join employeerole er on er.r_id = r.r_id where er.emp_id = #{emp_id};
+    </select>
+    
+    <insert id="insertRoleByEmployee" parameterType="employeeRole">
+        insert into employeerole(r_id,emp_id) values
+        <foreach collection="list" item="list" separator=",">
+        (
+            #{list.r_id},#{list.emp_id}
+        )
+        </foreach>
+        ;
+    </insert>
+    
+    <delete id="deleteRoleByEmployee" parameterType="employeeRole">
+        delete from employeerole where emp_id = #{list.emp_id}
+        and r_id in 
+        <foreach collection="list" item="list" open="(" separator="," close=")">
+               #{list.r_id}
+        </foreach>
+    </delete>
+    
+    <select id="selectAccountByEmployee" parameterType="employee" resultType="account">
+        select a.* from account a where a.emp_id = #{emp_id};
+    </select>
+    
+    <insert id="insertAccount" parameterType="account">
+        insert into account(emp_id,acc_telPhone,acc_email,acc_password,acc_salt) values(#{emp_id},#{acc_telPhone},#{acc_email},#{acc_password},#{acc_salt});
+    </insert>
+    
+    <select id="selectIsHaveSameSalt" parameterType="string" resultType="_int">
+        select count(1) from account where acc_salt = #{salt};
+    </select>
+    
+    <select id="selectIsHaveSameTelPhone" parameterType="account" resultType="_int">
+        select count(1) from account where acc_telPhone = #{acc_telPhone};
+    </select>
+    
+    <select id="selectIsHaveSameEmail" parameterType="account" resultType="_int">
+        select count(1) from account where acc_email = #{acc_email};
+    </select>
+    
+    <update id="updateAccountStatusUnLock" parameterType="account">
+        update account set acc_lockStatus = #{acc_lockStatus},acc_lockTime = NULL where acc_id = #{acc_id};
+    </update>
+    
+    <select id="selectAccountById" parameterType="account" resultType="account">
+        select a.* from account a where acc_id = #{acc_id};
+    </select>
+    
+    <update id="updateAccountPasswordToDefault" parameterType="account">
+        update account set acc_password = #{acc_password} where acc_id = #{acc_id}
+    </update>
+    
+    <update id="updateAccountLock" parameterType="account">
+        update account set acc_lockStatus = #{acc_lockStatus},acc_lockTime = now() where acc_id = #{acc_id};
+    </update>
     
 </mapper>
