@@ -4,9 +4,9 @@
     
     <insert id="insertSalaryStandard" parameterType="salaryStandard">
         insert into salarystandard(ss_name,ss_enactingPerson,ss_registrant,ss_registrationTime,ss_aduitStatus,ss_baseSalary,ss_trafficSubsidy,
-                           ss_communicationSubsidy,ss_floatWages,ss_routine,ss_lunchAllowance,ss_vehicleSubsidy)
+        ss_communicationSubsidy,ss_floatWages,ss_routine,ss_lunchAllowance,ss_vehicleSubsidy)
         values(#{ss_name},#{ss_enactingPerson},#{ss_registrant},now(),#{ss_aduitStatus},#{ss_baseSalary},#{ss_trafficSubsidy},#{ss_communicationSubsidy},
-               #{ss_floatWages},#{ss_routine},#{ss_lunchAllowance},#{ss_vehicleSubsidy})
+        #{ss_floatWages},#{ss_routine},#{ss_lunchAllowance},#{ss_vehicleSubsidy})
     </insert>
     
     <select id="selectCountBySalaryStandardName" parameterType="salaryStandard" resultType="_int">
