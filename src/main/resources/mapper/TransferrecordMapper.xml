@@ -81,32 +81,26 @@
 	</resultMap>
 	
 	<select id="selectTransFerrecordStatus" parameterType="transFerrecord" resultMap="transFerrecordMap">
-		select tf.*,e.emp_name
-		from transferrecord tf left join employee e 
-		on tf.emp_id=e.emp_id
+		select tf.*,e.emp_name,e.pos_id,pos_name,dep_name
+		from transferrecord tf 
+		left join employee e 
+		on tf.emp_id=e.emp_id 
+		left join position p 
+		on e.pos_id=p.pos_id
+		left join department d
+		on p.dep_id=d.dep_id 
+		<where>
+			<if test="tf_auditStatus != null">
+				and tf.tf_auditStatus=#{tf_auditStatus}
+			</if>
+		</where>
 	</select>
 	
 	<update id="updateTransfer" parameterType="transFerrecord">
 		update transferrecord tf 
-			left join employee e 
-			on tf.emp_id=e.emp_id 
-			left join position p 
-			on e.pos_id=p.pos_id 
-			left join department d
-			on p.dep_id=d.dep_id 
-			left join salarystandard ss 
-			on p.ss_id=ss.ss_id 
 			set
-				<if test="dep_name != ''  and dep_name != null">
-					d.dep_name=#{tf_newDepartment},
-				</if>
-				<if test="pos_name != ''  and pos_name != null">
-					p.pos_name=#{tf_newPosition},
-				</if>
-				<if test="ss_name != ''  and ss_name != null">
-					ss.ss_name=#{tf_newSalaryStandard},
-				</if>
-				<if test="tf_auditStatus !=null">
+				
+				<if test="tf_auditStatus != '' and tf_auditStatus != null">
 					tf.tf_auditStatus=#{tf_auditStatus},
 				</if>
 				tf.tf_auditor=#{tf_auditor},
@@ -116,6 +110,35 @@
 				tf.tf_fileNumber=#{tf_fileNumber}
 			</where>
 	</update>
+	<select id="selectPosNameId" parameterType="transFerrecord" resultMap="transFerrecordMap">
+		select p.pos_id from department d
+			right join position p 
+			on d.dep_id=p.dep_id
+			<where>
+				<if test="pos_name != '' and pos_name != null">
+					p.pos_name=#{pos_name}
+				</if>
+				<if test="dep_name != '' and dep_name != null">
+					d.dep_name=#{dep_name}
+				</if>
+			</where>
+	</select>
+	<!-- <update id="updateEmployee" parameterType="employee">
+		update employee e 
+			left join position p 
+			on e.pos_id=p.pos_id
+			right join transferrecord tf 
+			on tf.emp_id=e.emp_id
+			<set>
+				
+				<if test="pos_id != '' and pos_id != null">
+					e.pos_id=#{pos_id},
+				</if>
+			</set>
+			<where>
+				
+			</where>
+	</update> -->
 </mapper>
 
 

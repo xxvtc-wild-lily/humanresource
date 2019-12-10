@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ysd.humanresource.dao.TransferrecordMapper;
+import com.ysd.humanresource.entity.Employee;
 import com.ysd.humanresource.entity.TransFerrecord;
 import com.ysd.humanresource.service.TransferrecordService;
 @Service
@@ -26,7 +27,10 @@ public class TransferrecordServiceImpl implements TransferrecordService {
 	public Integer updateTransfer(TransFerrecord transFerrecord) {
 		// TODO Auto-generated method stub
 		Integer updateTransfer = transferrecordMapper.updateTransfer(transFerrecord);
+		Integer updateEmployee = transferrecordMapper.updateEmployee(transFerrecord);
+		List<TransFerrecord> selectPosNameId = transferrecordMapper.selectPosNameId(transFerrecord);
 		System.out.println(updateTransfer);
+		System.out.println(selectPosNameId);
 		return updateTransfer;
 	}
 

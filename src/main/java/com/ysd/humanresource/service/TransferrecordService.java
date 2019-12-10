@@ -2,6 +2,7 @@ package com.ysd.humanresource.service;
 
 import java.util.List;
 
+import com.ysd.humanresource.entity.Employee;
 import com.ysd.humanresource.entity.TransFerrecord;
 
 public interface TransferrecordService {
@@ -18,4 +19,12 @@ public interface TransferrecordService {
 	 * @return
 	 */
 	Integer updateTransfer(TransFerrecord transFerrecord);
+	
+	
+	/**
+	 * 员工调动管理调动信息审核员工表
+	 * @param employee
+	 * @return
+	 */
+	//Integer updateEmployee(TransFerrecord transFerrecord);
 }

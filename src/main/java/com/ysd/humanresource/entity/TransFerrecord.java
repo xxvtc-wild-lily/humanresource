@@ -28,8 +28,8 @@ public class TransFerrecord {
 	private Integer tf_auditStatus;
 	
 	private Employee employee;
-	private String dep_name;
-	private String pos_name;
-	private String ss_name;
+	private Integer pos_id;
+	private Integer dep_id;
+	private Integer ss_id;
 	
 }
