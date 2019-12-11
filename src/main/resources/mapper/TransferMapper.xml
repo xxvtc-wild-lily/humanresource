@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ysd.humanresource.dao.TransferMapper">
 	<resultMap type="account" id="accountMap">
-		<id column="Acc_id" property="Acc_id"/>
-		<result column="Acc_telPhone" property="Acc_telPhone"/>
-		<result column="Acc_email" property="Acc_email"/>
-		<result column="Acc_password" property="Acc_password"/>
-		<result column="Acc_salt" property="Acc_salt"/>
-		<result column="Acc_salt" property="Acc_salt"/>
-		<result column="Acc_lockStatus" property="Acc_lockStatus"/>
-		<result column="Acc_lockTime" property="Acc_lockTime"/>
+		<id column="acc_id" property="acc_id"/>
+		<result column="acc_telPhone" property="acc_telPhone"/>
+		<result column="acc_email" property="acc_email"/>
+		<result column="acc_password" property="acc_password"/>
+		<result column="acc_salt" property="acc_salt"/>
+		<result column="acc_salt" property="acc_salt"/>
+		<result column="acc_lockStatus" property="acc_lockStatus"/>
+		<result column="acc_lockTime" property="acc_lockTime"/>
 		<association property="employee" javaType="employee">
 			<id column="emp_id" property="emp_id"/>
 			<result column="emp_fileNumber" property="emp_fileNumber"/>
@@ -74,7 +74,7 @@
 	</resultMap>
 	
 	<select id="selectByStatus" parameterType="Account" resultMap="accountMap">
-		select e.emp_id,e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_name,ss.ss_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
+		select e.emp_id,e.emp_name,e.emp_fileNumber,e.emp_registrantTime,d.dep_id,d.dep_name,ss.ss_name,p.pos_name,a.acc_telPhone,a.acc_email,a.acc_lockStatus
 			from employee e left join account a 
 			on a.emp_id=e.emp_id left join position p
 			on e.pos_id=p.pos_id left join department d
@@ -94,6 +94,7 @@
 					and e.emp_registrantTime=#{emp_registrantTime}
 				</if>
 			</where>
+			group by e.emp_registrantTime desc
 	</select>
 	<insert id="insertTransfer" parameterType="transFerrecord">
 		insert into transferrecord 

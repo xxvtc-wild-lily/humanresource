@@ -29,4 +29,11 @@ public class TransferrecordController {
 		Integer updateTransfer = transferrecordService.updateTransfer(transFerrecord);
 		return updateTransfer;
 	}
+	
+	
+	@PostMapping("/updateTransferno")
+	public Integer updateTransferno(TransFerrecord transFerrecord) {
+		
+		return transferrecordService.updateTransferno(transFerrecord);
+	}
 }

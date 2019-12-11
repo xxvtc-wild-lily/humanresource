@@ -25,7 +25,7 @@ public interface TransferrecordMapper {
 	 * @param transFerrecord
 	 * @return
 	 */
-	List<TransFerrecord> selectPosNameId(TransFerrecord transFerrecord);
+	Integer selectPosNameId(TransFerrecord transFerrecord);
 	
 	/**
 	 * 员工调动管理调动信息审核员工表
@@ -33,4 +33,13 @@ public interface TransferrecordMapper {
 	 * @return
 	 */
 	Integer updateEmployee(TransFerrecord transFerrecord);
+	
+	
+	
+	/**
+	 * 员工调动管理员工调动信息审核记录表
+	 * @param transFerrecord
+	 * @return
+	 */
+	Integer updateTransferno(TransFerrecord transFerrecord);
 }

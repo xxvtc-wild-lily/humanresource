@@ -48,7 +48,6 @@ public class Employee {
 	private String dep_name;
 	private String pos_name;
 	private String ss_name;
-	private List<Account> account;
 	private Account account;
 	
 }

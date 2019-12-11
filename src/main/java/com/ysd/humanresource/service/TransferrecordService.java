@@ -22,9 +22,9 @@ public interface TransferrecordService {
 	
 	
 	/**
-	 * 员工调动管理调动信息审核员工表
-	 * @param employee
+	 * 员工调动管理员工调动信息审核记录表
+	 * @param transFerrecord
 	 * @return
 	 */
-	//Integer updateEmployee(TransFerrecord transFerrecord);
+	Integer updateTransferno(TransFerrecord transFerrecord);
 }
