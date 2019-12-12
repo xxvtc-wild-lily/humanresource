@@ -1,10 +1,13 @@
 package com.ysd.humanresource.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.ysd.humanresource.entity.Department;
 import com.ysd.humanresource.entity.Pagination;
 import com.ysd.humanresource.entity.PayrollRecord;
 import com.ysd.humanresource.entity.Position;
+import com.ysd.humanresource.entity.SalaryStandard;
 
 public interface SalaryPaymentService {
 	
@@ -47,5 +50,38 @@ public interface SalaryPaymentService {
 	 * @return 查询到的薪酬发放信息集合
 	 */
 	List<PayrollRecord> selectAllPayrollRecord(Pagination pagination);
+	
+	/**
+	 * 获取岗位以及对应部门的树状数据
+	 * @return 查询到的树状数据
+	 */
+	List<HashMap<String, Object>> getAllDepartmentTree();
+	
+	/**
+	 * 查询所有薪酬标准
+	 * @return 查询到的薪酬标准集合
+	 */
+	List<SalaryStandard> getAllSalaryStandard();
+	
+	/**
+	 * 修改职位的薪酬标准
+	 * @param position 包含修改信息的实体类
+	 * @return 受影响的行数
+	 */
+	Integer editSalaryStandard(Position position);
+	
+	/**
+	 * 根据职位查询薪酬发放信息
+	 * @param position 包含职位信息的实体类
+	 * @return 查询到的薪酬发放信息
+	 */
+	List<Position> selectSalaryPaymentByPosition(Position position);
+	
+	/**
+	 * 修改薪酬单状态为已支付
+	 * @param payrollRecord 包含要修改的薪酬单的信息
+	 * @return 受影响的行数
+	 */
+	Integer updatePayrollRecordPayStatus(PayrollRecord payrollRecord);
 	
 }
