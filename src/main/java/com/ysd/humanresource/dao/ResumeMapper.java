@@ -12,7 +12,7 @@ public interface ResumeMapper {
 	 */
 	 public Integer inResume(Resume resume);
 	 /**
-	  * 根据姓名和手机号查询应聘的部门和岗位
+	  * 根据姓名和手机号查询应聘的部门和岗位并且是需要考试的
 	  * @return
 	  */
 	 public Resume selectByNameAndShouJiHao(Resume resume);

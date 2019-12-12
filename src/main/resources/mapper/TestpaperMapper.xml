@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysd.humanresource.dao.TestpaperMapper">
+      <insert id="tianJiaShiJian" parameterType="testpaper">
+      		insert into testpaper (tp_resumeId,tp_testQuestionId,tp_answer) 
+		values (#{tp_resumeId},#{tp_testQuestionId},#{tp_answer})
+      </insert>
+      <select id="zhengQunDanAn" parameterType="int" resultType="testQuestion">
+      		select tq_correctAnswer from testquestion where tq_id=#{tq_id}
+      </select>
+      <update id="xuiGaiChengJi" parameterType="resume">
+      		update resume 
+			set re_matchTestResult=#{re_matchTestResult}
+			where re_id=#{re_id}
+      </update>
+      <update id="xuiGaiMianShiZhuangTai" parameterType="int">
+      		update interviewaudit 
+			set ia_interviewOpinion=7
+			where re_id=#{re_id}
+      </update>
+</mapper>
+

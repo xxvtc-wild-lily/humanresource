@@ -42,7 +42,7 @@ public class Resume {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date re_recommendedTime;
 	private String re_recommendation;
-	private Integer re_machineTestResult;
+	private Integer re_matchTestResult;
 	private Integer re_WrittenTestResult;
 	
 }

@@ -18,6 +18,18 @@ public interface InterviewAuditMapper {
 	 */
 	public Integer selectResumeInterviewAuditCount(Pagination<InterviewAudit> pag);
 	/**
+	 * 分页连表查询需要审核的简历和面试登记表信息
+	 * @param pag
+	 * @return
+	 */
+	public List<InterviewAudit> selectResumeAndInterviewAudit(Pagination<InterviewAudit> pag);
+	/**
+	 * 分页连表查询需要审核的简历和面试登记表信息总条数
+	 * @param pag
+	 * @return
+	 */
+	public Integer selectResumeAndInterviewAuditCount(Pagination<InterviewAudit> pag);
+	/**
 	 * 根据简历ID修改面试状态
 	 * @param inte
 	 * @return
@@ -35,4 +47,11 @@ public interface InterviewAuditMapper {
 	 * @return
 	 */
 	public Integer deleteResumeByReId(Integer re_id);
+	/**
+	 * 录用审核不通过
+	 * @param re_id
+	 * @return
+	 */
+	public Integer shenHeBuTongGuo(Integer re_id);
+	
 }

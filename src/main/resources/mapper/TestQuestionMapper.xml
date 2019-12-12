@@ -27,10 +27,11 @@
          </where>
 	</select>
 	<insert id="addTestQuestionCount" parameterType="testQuestion">
-		insert into testquestion (tq_department,tq_position,tq_registrant,tq_registrationTime,tq_type,tq_stem,tq_answerA,tq_answerB,tq_answerC,tq_answerD,tq_answerE,tq_correctAnswer) 
-		values (#{tq_department},#{tq_position},#{tq_registrant},#{tq_registrationTime},#{tq_type},#{tq_stem},#{tq_answerA},#{tq_answerB},#{tq_answerC},#{tq_answerD},#{tq_answerE},#{tq_correctAnswer})
+		insert into testquestion (tq_department,tq_position,tq_registrant,tq_registrationTime,tq_stem,tq_answerA,tq_answerB,tq_answerC,tq_answerD,tq_answerE,tq_correctAnswer) 
+		values (#{tq_department},#{tq_position},#{tq_registrant},#{tq_registrationTime},#{tq_stem},#{tq_answerA},#{tq_answerB},#{tq_answerC},#{tq_answerD},#{tq_answerE},#{tq_correctAnswer})
 	</insert>
 	<select id="selectTestQuestionByBuMenAndZhiWei" parameterType="resume" resultType="testQuestion">
 		select * from testquestion  where tq_department=#{re_department} and tq_position=#{re_position} order by rand() limit 20;
 	</select>
+	
 </mapper>
