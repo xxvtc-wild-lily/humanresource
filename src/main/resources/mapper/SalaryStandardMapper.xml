@@ -65,10 +65,9 @@
     </select>
     
     <update id="updateSalaryStandardById" parameterType="salaryStandard">
-        update salarystandard set ss_name = #{ss_name},ss_enactingPerson = #{ss_enactingPerson},ss_registrant = #{ss_registrant},
-        ss_reviewer = #{ss_reviewer},ss_aduitOpinion = #{ss_aduitOpinion},ss_reviewTime = now(),ss_aduitStatus = #{ss_aduitStatus},
-        ss_baseSalary = #{ss_baseSalary},ss_communicationSubsidy = #{ss_communicationSubsidy},ss_floatWages = #{ss_floatWages},ss_routine = #{ss_routine},
-        ss_lunchAllowance = #{ss_lunchAllowance},ss_trafficSubsidy = #{ss_trafficSubsidy},ss_vehicleSubsidy = #{ss_vehicleSubsidy}
+        update salarystandard set ss_name = #{ss_name}, ss_reviewer = #{ss_reviewer},ss_aduitOpinion = #{ss_aduitOpinion},ss_reviewTime = now(),
+        ss_aduitStatus = #{ss_aduitStatus},ss_baseSalary = #{ss_baseSalary},ss_communicationSubsidy = #{ss_communicationSubsidy},ss_floatWages = #{ss_floatWages},
+        ss_routine = #{ss_routine},ss_lunchAllowance = #{ss_lunchAllowance},ss_trafficSubsidy = #{ss_trafficSubsidy},ss_vehicleSubsidy = #{ss_vehicleSubsidy}
         where ss_id = #{ss_id}
     </update>
     

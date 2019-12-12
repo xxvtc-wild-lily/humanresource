@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.LoginMapper">
+    
+    <select id="selectAccountByTelPhone" parameterType="account" resultType="account">
+        select a.* from account a where acc_telPhone = #{acc_telPhone};
+    </select>
+    
+    <select id="selectAccountByEamil" parameterType="account" resultType="account">
+        select a.* from account a where acc_email = #{acc_telPhone};
+    </select>
+    
+    <select id="selectAccountLockStatus" parameterType="account" resultType="_int">
+        select acc_lockStatus from account where acc_id = #{acc_id};
+    </select>
+    
+    <select id="selectAccountPasswordWrongTimes" parameterType="account" resultType="_int">
+        select acc_passwordWrongTimes from account where acc_id = #{acc_id};
+    </select>
+    
+    <update id="updateAccountPasswordWrongTimes" parameterType="account">
+        update account set acc_passwordWrongTimes = acc_passwordWrongTimes + 1 where acc_id = #{acc_id};
+    </update>
+    
+    <update id="updateAccountInfoBecauseLoginSuccess" parameterType="account">
+        update account set acc_passwordWrongTimes = 0,acc_lastLoginTime = now() where acc_id = #{acc_id};
+    </update>
+    
+    <select id="selectEmployeeById" parameterType="_int" resultType="employee">
+        select e.* from employee e where e.emp_id = #{emp_id};
+    </select>
+    
+    <select id="selectModuleByEmployee" parameterType="employee" resultType="module">
+        select m.*
+        from employee e inner join employeerole er on e.emp_id = er.emp_id inner join role r on er.r_id = r.r_id 
+        inner join rolemodule rm on r.r_id = rm.r_id inner join module m on rm.m_id = m.m_id 
+        where e.emp_id = #{emp_id}
+    </select>
+    
+    <select id="selectAccountByEmployee" parameterType="account" resultType="account">
+        select a.* from account a where a.emp_id = #{emp_id}
+    </select>
+    
+    <update id="updateAccountPassword" parameterType="account">
+        update account set acc_password = #{acc_password} where acc_id = #{acc_id};
+    </update>
+    
+</mapper>
