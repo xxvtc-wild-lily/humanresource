@@ -16,4 +16,22 @@ public interface InterviewAuditService {
 	 * @return
 	 */
 	public Integer updateInterviewAudit(InterviewAudit inte);
+	/**
+	 * 根据简历ID删除简历
+	 * @param re_id
+	 * @return
+	 */
+	public Integer deleteResume(Integer re_id);
+	/**
+	 * 查询需要人事经理录用审核的简历和面试审核信息
+	 * @param pag
+	 * @return
+	 */
+	public Pagination<InterviewAudit> selectResumeAndInterviewAudit(Pagination<InterviewAudit> pag);
+	/**
+	 * 录用审核不通过
+	 * @param re_id
+	 * @return
+	 */
+	public Integer luYongShenHeBuTongGuo(Integer re_id);
 }

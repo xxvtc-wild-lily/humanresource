@@ -1,6 +1,9 @@
 package com.ysd.humanresource.service;
 
+import java.util.List;
+
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.Resume;
 import com.ysd.humanresource.entity.TestQuestion;
 
 public interface TestQuestionService {
@@ -16,4 +19,10 @@ public interface TestQuestionService {
 	 * @return
 	 */
 	public Integer addTestQuestion(TestQuestion tq);
+	/**
+	 * 考试
+	 * @param resume
+	 * @return
+	 */
+	public List kaoShi(Resume resume);
 }

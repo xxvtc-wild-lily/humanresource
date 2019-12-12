@@ -73,9 +73,23 @@
 		where re_id=#{re_id}
 	</update>
 	<delete id="deleteInterviewAuditByReId" parameterType="int">
-		
+		delete from interviewaudit where re_id=#{re_id}
 	</delete>
-	<delete id="deleteResumeByReId">
-		
+	<delete id="deleteResumeByReId" parameterType="int">
+		delete from resume where re_id=#{re_id}
 	</delete>
+	<select id="selectResumeAndInterviewAudit" parameterType="pagination" resultMap="interviewAuditMap">
+		select inte.*,re.* from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion = 3
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectResumeAndInterviewAuditCount" parameterType="pagination" resultType="int">
+		select inte.*,re.* from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion = 3
+	</select>
+	<update id="shenHeBuTongGuo" parameterType="int">
+		update interviewaudit 			
+		set ia_interviewOpinion = 4
+		where re_id=#{re_id}
+	</update>
 </mapper>

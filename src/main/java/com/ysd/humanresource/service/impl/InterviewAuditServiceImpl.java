@@ -26,5 +26,24 @@ public class InterviewAuditServiceImpl implements InterviewAuditService {
 		Integer updateInterviewAuditByReId = interviewAuditMapper.updateInterviewAuditByReId(inte);
 		return updateInterviewAuditByReId;
 	}
+	@Override
+	public Integer deleteResume(Integer re_id) {
+		Integer deleteInterviewAuditByReId = interviewAuditMapper.deleteInterviewAuditByReId(re_id);
+		Integer deleteResumeByReId = interviewAuditMapper.deleteResumeByReId(re_id);
+		return deleteResumeByReId;
+	}
+	@Override
+	public Pagination<InterviewAudit> selectResumeAndInterviewAudit(Pagination<InterviewAudit> pag) {
+		List<InterviewAudit> selectResumeAndInterviewAudit = interviewAuditMapper.selectResumeAndInterviewAudit(pag);
+		Integer selectResumeAndInterviewAuditCount = interviewAuditMapper.selectResumeAndInterviewAuditCount(pag);
+		pag.setRows(selectResumeAndInterviewAudit);
+		pag.setTotal(selectResumeAndInterviewAuditCount);
+		return pag;
+	}
+	@Override
+	public Integer luYongShenHeBuTongGuo(Integer re_id) {
+		Integer shenHeBuTongGuo = interviewAuditMapper.shenHeBuTongGuo(re_id);
+		return shenHeBuTongGuo;
+	}
 
 }

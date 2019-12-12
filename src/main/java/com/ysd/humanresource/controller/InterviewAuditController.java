@@ -27,4 +27,23 @@ public class InterviewAuditController {
 		return updateInterviewAudit;
 		
 	}
+	@PostMapping("/shanChuJianLi")
+	public Integer shanChuJianLi(Integer re_id) {
+		Integer deleteResume = interviewAuditService.deleteResume(re_id);
+		return deleteResume;
+	}
+	@PostMapping("/chaXunXuYaoLuYongShenHeJianLi")
+	public Pagination<InterviewAudit> selectResumeAndInterviewAudit(@RequestParam("rows") Integer pageSize,Pagination<InterviewAudit> pag){
+		pag.setPageSize(pageSize);
+		pag.setPage((pag.getPage()-1)*pag.getPageSize());
+		Pagination<InterviewAudit> selectResumeAndInterviewAudit = interviewAuditService.selectResumeAndInterviewAudit(pag);
+		return selectResumeAndInterviewAudit;
+		
+	}
+	@PostMapping("/luYongBuTongGuo")
+	public Integer luYongShenHeBuTongGuo(Integer re_id) {
+		Integer luYongShenHeBuTongGuo = interviewAuditService.luYongShenHeBuTongGuo(re_id);
+		return luYongShenHeBuTongGuo;
+		
+	}
 }

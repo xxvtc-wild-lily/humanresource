@@ -8,7 +8,7 @@
 			values (#{re_department},#{re_position},#{re_recruitmentType},#{re_name},#{re_sex},#{re_email},#{re_telPhone},#{re_address},#{re_postalCode},#{re_nationality},#{re_birthAddress},#{re_birthday},#{re_age},#{re_nation},#{re_faith},#{re_politicalOutlook},#{re_graduateSchool},#{re_IDnumber},#{re_qualifications},#{re_major},#{re_yearsOfEducation},#{re_salaryRequirement},#{re_speciality},#{re_hobby},#{re_registrationTime},#{re_personalResume},#{re_remarks})
 	</insert>
 	<select id="selectByNameAndShouJiHao" parameterType="resume" resultType="resume">
-		select re_id,re_department,re_position from resume where re_name=#{re_name} and re_telPhone =#{re_telPhone}
+		select re.re_id,re.re_department,re.re_position from resume re join interviewaudit inte on re.re_id=inte.re_id where re.re_name=#{re_name} and re.re_telPhone =#{re_telPhone} and inte.ia_interviewOpinion =2
 	</select>
 	<select id="selectResumeByDuoTiaoJian" parameterType="pagination" resultType="resume">
 		select re.* from resume re JOIN interviewaudit inte on re.re_id=inte.re_id
