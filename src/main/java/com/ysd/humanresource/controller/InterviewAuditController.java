@@ -21,6 +21,14 @@ public class InterviewAuditController {
 		return selectInterviewAuditAndResume;
 		
 	}
+	@PostMapping("/selectInterviewAuditResumes")
+	public Pagination<InterviewAudit> selectInterviewAuditResumes(@RequestParam("rows") Integer pageSize,Pagination<InterviewAudit> pag){
+		pag.setPageSize(pageSize);
+		pag.setPage((pag.getPage()-1)*pag.getPageSize());
+		Pagination<InterviewAudit> selectInterviewAuditAndResumes = interviewAuditService.selectInterviewAuditAndResumes(pag);
+		return selectInterviewAuditAndResumes;
+		
+	}
 	@PostMapping("/mianShiShaiXuan")
 	public Integer mianShiShaiXuan(InterviewAudit inte) {
 		Integer updateInterviewAudit = interviewAuditService.updateInterviewAudit(inte);

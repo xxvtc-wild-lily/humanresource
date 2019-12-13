@@ -81,6 +81,7 @@
             <if test="pos_id != null and pos_id != ''">
                 and e.pos_id = #{pos_id}
             </if>
+            and emp_ext2 = 2
         </where>
         limit #{page},#{pageSize};
     </select>
@@ -110,6 +111,7 @@
             <if test="pos_id != null and pos_id != ''">
                 and e.pos_id = #{pos_id}
             </if>
+            and emp_ext2 = 2
         </where>
     </select>
     

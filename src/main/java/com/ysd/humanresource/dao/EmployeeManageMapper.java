@@ -13,14 +13,14 @@ import com.ysd.humanresource.entity.Role;
 public interface EmployeeManageMapper {
 	
 	/**
-	 * 分页查询所有员工数据
+	 * 分页查询通过审核的员工数据
 	 * @param pagination 包含分页信息的分页类
 	 * @return 查询到的员工数据
 	 */
 	List<Employee> selectAllEmployee(Pagination<Employee> pagination);
 	
 	/**
-	 * 根据条件查询所有员工数量
+	 * 根据条件查询通过审核的员工数量
 	 * @param pagination 包含分页信息的分页类
 	 * @return 查询到的员工数据
 	 */

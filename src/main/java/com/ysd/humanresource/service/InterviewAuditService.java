@@ -11,6 +11,12 @@ public interface InterviewAuditService {
 	 */
 	public Pagination<InterviewAudit> selectInterviewAuditAndResume(Pagination<InterviewAudit> pag);
 	/**
+	 * 连表分页查询简历和成绩
+	 * @param pag
+	 * @return
+	 */
+	public Pagination<InterviewAudit> selectInterviewAuditAndResumes(Pagination<InterviewAudit> pag);
+	/**
 	 * 面试筛选修改面试状态
 	 * @param inte
 	 * @return

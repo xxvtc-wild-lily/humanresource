@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysd.humanresource.dao.EmployeeMapper">
+		<resultMap type="employee" id="empMap">
+			<id column="emp_id" property="emp_id"/>
+			<result column="emp_fileNumber" property="emp_fileNumber"/>
+			<result column="emp_name" property="emp_name"/>
+			<result column="emp_sex" property="emp_sex"/>
+			<result column="emp_picture" property="emp_picture"/>
+			<result column="emp_email" property="emp_email"/>
+			<result column="emp_telPhone" property="emp_telPhone"/>
+			<result column="emp_address" property="emp_address"/>
+			<result column="emp_postalCode" property="emp_postalCode"/>
+			<result column="emp_nationality" property="emp_nationality"/>
+			<result column="emp_birthAddress" property="emp_birthAddress"/>
+			<result column="emp_age" property="emp_age"/>
+			<result column="emp_birthday" property="emp_birthday"/>
+			<result column="emp_nation" property="emp_nation"/>
+			<result column="emp_faith" property="emp_faith"/>
+			<result column="emp_politicalOutlook" property="emp_politicalOutlook"/>
+			<result column="emp_IDnumber" property="emp_IDnumber"/>
+			<result column="emp_socialSecurityNumber" property="emp_socialSecurityNumber"/>
+			<result column="emp_graduateSchool" property="emp_graduateSchool"/>
+			<result column="emp_qualifications" property="emp_qualifications"/>
+			<result column="emp_yearsOfEducation" property="emp_yearsOfEducation"/>
+			<result column="emp_major" property="emp_major"/>
+			<result column="emp_openingBank" property="emp_openingBank"/>
+			<result column="emp_bankAccount" property="emp_bankAccount"/>
+			<result column="emp_registrantTime" property="emp_registrantTime"/>
+			<result column="emp_speciality" property="emp_speciality"/>
+			<result column="emp_hobby" property="emp_hobby"/>
+			<result column="emp_personalResume" property="emp_personalResume"/>
+			<result column="emp_familyRelationsInfo" property="emp_familyRelationsInfo"/>
+			<result column="emp_registrant" property="emp_registrant"/>
+			<result column="emp_remarks" property="emp_remarks"/>
+			<result column="emp_ext2" property="emp_ext2"/>
+			<result column="pos_name" property="pos_name"/>
+		</resultMap>
+		
+<!-- 分页查询 -->
+	<select id="empFenye" parameterType="fenye" resultMap="empMap">
+		 select e.*,p.pos_name FROM employee e inner join position p on e.pos_id=p.pos_id where emp_ext2=1 limit #{page},#{pageSize}
+	</select>
+<!-- 总条数 -->	
+	<select id="empCon" parameterType="fenye" resultType="int">
+		 select Count(1) FROM employee where emp_ext2=1
+	</select>
+<!-- 查询职位 -->
+	<select id="selPos" resultType="position">
+		 select pos_id,pos_name FROM  position 	
+	</select>
+<!-- 员工添加 -->
+	<insert id="AddUser" parameterType="employee">
+		INSERT INTO employee (
+			emp_name,
+			emp_fileNumber,
+			emp_sex,
+			emp_email,
+			emp_telPhone,
+			emp_address,
+			emp_postalCode,
+			emp_nationality,
+			emp_birthAddress,
+			emp_age,
+			emp_birthday,
+			emp_nation,
+			emp_faith,
+			emp_politicalOutlook,
+			emp_IDnumber,
+			emp_socialSecurityNumber,
+			emp_graduateSchool,
+			emp_qualifications,
+			emp_yearsOfEducation,
+			emp_major,
+			emp_openBank,
+			emp_bankAccount,
+			emp_speciality,
+			emp_hobby,
+			emp_personalResume,
+			emp_familyRelationsInfo,
+			pos_id,
+			emp_remarks,
+			emp_ext2
+		)
+		VALUES
+			(
+			#{emp_name},
+			#{emp_fileNumber},
+			#{emp_sex},
+			#{emp_email},
+			#{emp_telPhone},
+			#{emp_address},
+			#{emp_postalCode},
+			#{emp_nationality},
+			#{emp_birthAddress},
+			#{emp_age},
+			#{emp_birthday},
+			#{emp_nation},
+			#{emp_faith},
+			#{emp_politicalOutlook},
+			#{emp_IDnumber},
+			#{emp_socialSecurityNumber},
+			#{emp_graduateSchool},
+			#{emp_qualifications},
+			#{emp_yearsOfEducation},
+			#{emp_major},
+			#{emp_openBank},
+			#{emp_bankAccount},
+			#{emp_speciality},
+			#{emp_hobby},
+			#{emp_personalResume},
+			#{emp_familyRelationsInfo},
+			#{pos_id},
+			#{emp_remarks},
+			1
+	)
+	</insert>
+<!--员工删除  -->	
+	<update id="empDel" parameterType="string">
+		UPDATE employee SET emp_ext2=3 WHERE emp_fileNumber=#{Id}
+	</update>
+	
+<!-- 分页查询状态为2的数据 -->
+	<select id="empBoss" parameterType="fenye" resultMap="empMap">
+		 select e.*,p.pos_name FROM employee e inner join position p on e.pos_id=p.pos_id where emp_ext2=2 limit #{page},#{pageSize}
+	</select>
+<!-- 数据总条数 -->	
+	<select id="empContwo" parameterType="fenye" resultType="int">
+		 select Count(1) FROM employee where emp_ext2=2
+	</select>
+<!--复核档案 -->
+	<update id="upEmp" parameterType="employee">
+		update employee 
+		<set>
+				 emp_name = #{emp_name},
+				 emp_sex = #{emp_sex},
+				 emp_telPhone = #{emp_telPhone},
+				 emp_email = #{emp_email},
+				 emp_address=#{emp_address},
+				 emp_postalCode=#{emp_postalCode},
+				 emp_nationality=#{emp_nationality},
+				 emp_birthAddress=#{emp_birthAddress},
+				 emp_age=#{emp_age},
+				 emp_birthday=#{emp_birthday},
+				 emp_nation=#{emp_nation},
+				 emp_faith=#{emp_faith},
+				 emp_politicalOutlook=#{emp_politicalOutlook},
+				 emp_IDnumber=#{emp_IDnumber},
+				 emp_socialSecurityNumber=#{emp_socialSecurityNumber},
+				 emp_graduateSchool=#{emp_graduateSchool},
+				 emp_qualifications=#{emp_qualifications},
+				 emp_yearsOfEducation=#{emp_yearsOfEducation},
+				 emp_major=#{emp_major},
+				 emp_openBank=#{emp_openBank},
+				 emp_bankAccount=#{emp_bankAccount},
+				 emp_speciality=#{emp_speciality},
+				 emp_hobby=#{emp_hobby},
+				 emp_personalResume=#{emp_personalResume},
+				 emp_familyRelationsInfo=#{emp_familyRelationsInfo},
+				 emp_remarks=#{emp_remarks},
+				 emp_ext2=2
+		</set>
+		<where>
+			<if test="emp_id>0">
+					and emp_id=#{emp_id}
+			</if>
+		</where>	
+	</update>
+		
+</mapper>

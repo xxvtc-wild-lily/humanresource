@@ -45,5 +45,13 @@ public class InterviewAuditServiceImpl implements InterviewAuditService {
 		Integer shenHeBuTongGuo = interviewAuditMapper.shenHeBuTongGuo(re_id);
 		return shenHeBuTongGuo;
 	}
+	@Override
+	public Pagination<InterviewAudit> selectInterviewAuditAndResumes(Pagination<InterviewAudit> pag) {
+		List<InterviewAudit> selectResumeInterviewAudit = interviewAuditMapper.selectResumeInterviewAudits(pag);
+		Integer selectResumeInterviewAuditCount = interviewAuditMapper.selectResumeInterviewAuditCounts(pag);
+		pag.setRows(selectResumeInterviewAudit);
+		pag.setTotal(selectResumeInterviewAuditCount);
+		return pag;
+	}
 
 }

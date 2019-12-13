@@ -43,6 +43,7 @@ public class Employee {
 	private Integer emp_registrant;
 	private Integer pos_id;
 	private String emp_remarks;
+	private Integer emp_ext2;
 	
 	private Position position;
 	

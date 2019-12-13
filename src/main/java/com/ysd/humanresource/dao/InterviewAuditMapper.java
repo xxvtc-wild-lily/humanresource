@@ -18,6 +18,18 @@ public interface InterviewAuditMapper {
 	 */
 	public Integer selectResumeInterviewAuditCount(Pagination<InterviewAudit> pag);
 	/**
+	 * 连表分页查询简历和成绩
+	 * @param pag
+	 * @return
+	 */
+	public List<InterviewAudit> selectResumeInterviewAudits(Pagination<InterviewAudit> pag);
+	/**
+	 * 连表分页查询简历和成绩总条数
+	 * @param pag
+	 * @return
+	 */
+	public Integer selectResumeInterviewAuditCounts(Pagination<InterviewAudit> pag);
+	/**
 	 * 分页连表查询需要审核的简历和面试登记表信息
 	 * @param pag
 	 * @return

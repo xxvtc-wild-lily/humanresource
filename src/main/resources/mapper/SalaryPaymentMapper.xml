@@ -99,7 +99,7 @@
         <foreach collection="list" item="rows" separator=",">
             (#{rows.pr_paySlipNumber},#{rows.emp_fileNumber},#{rows.emp_name},#{rows.pr_registrant},now(),#{rows.ss_baseSalary},#{rows.ss_trafficSubsidy},
             #{rows.ss_communicationSubsidy},#{rows.ss_floatWages},#{rows.ss_routine},#{rows.ss_lunchAllowance},#{rows.ss_vehicleSubsidy},#{rows.pr_rewardAmount},
-            #{rows.pr_amountPayable},#{rows.pr_payrollRemarks},#{pr_ext1},#{rows.pr_ext2})
+            #{rows.pr_amountPayable},#{rows.pr_payrollRemarks},#{rows.pr_ext1},#{rows.pr_ext2})
         </foreach>
     </insert>
     

@@ -54,7 +54,7 @@
 			 <result column='re_recommender' property='re_recommender'/> 
 			 <result column='re_recommendedTime' property='re_recommendedTime'/> 
 			 <result column='re_recommendation' property='re_recommendation'/> 
-			 <result column='re_machineTestResult' property='re_machineTestResult'/> 
+			 <result column='re_matchTestResult' property='re_matchTestResult'/> 
 			 <result column='re_WrittenTestResult' property='re_WrittenTestResult'/>
 		</association>  
 	</resultMap>
@@ -66,6 +66,15 @@
 	<select id="selectResumeInterviewAuditCount" parameterType="pagination" resultType="int">
 		select count(inte.ia_id) from interviewaudit inte join resume re on inte.re_id=re.re_id 
 		where inte.ia_interviewOpinion &lt; 0
+	</select>
+	<select id="selectResumeInterviewAudits" parameterType="pagination" resultMap="interviewAuditMap">
+		select inte.*,re.* from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion =7
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectResumeInterviewAuditCounts" parameterType="pagination" resultType="int">
+		select count(inte.ia_id) from interviewaudit inte join resume re on inte.re_id=re.re_id 
+		where inte.ia_interviewOpinion =7
 	</select>
 	<update id="updateInterviewAuditByReId" parameterType="interviewAudit">
 		update interviewaudit 			
