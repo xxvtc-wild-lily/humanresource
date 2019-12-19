@@ -29,4 +29,5 @@ public class InterviewAudit {
 	private Integer re_id;
 	private Resume resume;
 	
+	
 }

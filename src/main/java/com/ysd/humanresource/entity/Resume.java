@@ -44,5 +44,8 @@ public class Resume {
 	private String re_recommendation;
 	private Integer re_matchTestResult;
 	private Integer re_WrittenTestResult;
-	
+	private String re_ext1;
+	private Integer re_ext2;
+	private String re_ext3;
+	private Integer re_ext4;
 }

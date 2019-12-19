@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ysd.humanresource.entity.InterviewAudit;
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.Resume;
 public interface InterviewAuditMapper {
 	/**
 	 * 连表分页查询简历和面试登记表
@@ -65,5 +66,11 @@ public interface InterviewAuditMapper {
 	 * @return
 	 */
 	public Integer shenHeBuTongGuo(Integer re_id);
+	/**
+	 * 录用审核通过
+	 * @param resume
+	 * @return
+	 */
+	public Integer shenHeTongGuo(Resume resume);
 	
 }

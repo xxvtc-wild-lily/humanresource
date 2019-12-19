@@ -7,4 +7,10 @@
 	<select id="selectPosByDepId" parameterType="position" resultType="position">
 		select po.pos_id,po.pos_name FROM position as po WHERE po.dep_id=#{dep_id}
 	</select>
+	<select id="selectPosID" parameterType="java.lang.String" resultType="int">
+		select pos_id from position  where pos_name=#{posname}
+	</select>
+	<select id="selectEmpIdByName" parameterType="java.lang.String" resultType="int"> 
+		select emp_id from employee where emp_name=#{empname}
+	</select>
 </mapper>

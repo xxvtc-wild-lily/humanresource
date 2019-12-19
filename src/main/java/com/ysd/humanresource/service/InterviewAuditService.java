@@ -2,6 +2,7 @@ package com.ysd.humanresource.service;
 
 import com.ysd.humanresource.entity.InterviewAudit;
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.Resume;
 
 public interface InterviewAuditService {
 	/**
@@ -40,4 +41,10 @@ public interface InterviewAuditService {
 	 * @return
 	 */
 	public Integer luYongShenHeBuTongGuo(Integer re_id);
+	/**
+	 * 录用审核通过将简历信息添加到员工档案中
+	 * @param resume
+	 * @return
+	 */
+	public Integer luYongShenHeTongGuo(Resume resume);
 }

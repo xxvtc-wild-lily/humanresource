@@ -101,4 +101,8 @@
 		set ia_interviewOpinion = 4
 		where re_id=#{re_id}
 	</update>
+	<insert id="shenHeTongGuo" parameterType="resume">
+		insert into employee (emp_fileNumber,emp_name,emp_email,emp_telPhone,emp_graduateSchool,emp_qualifications,emp_registrantTime,emp_registrant,pos_id,emp_ext2) 
+		values (#{re_ext3},#{re_name},#{re_email},#{re_telPhone},#{re_graduateSchool},#{re_qualifications},now(),#{re_ext4},#{re_ext2},2)
+	</insert>
 </mapper>

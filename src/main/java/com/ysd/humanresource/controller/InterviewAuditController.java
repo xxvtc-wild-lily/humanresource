@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ysd.humanresource.entity.InterviewAudit;
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.Resume;
 import com.ysd.humanresource.service.InterviewAuditService;
 
 @RestController
@@ -52,6 +53,12 @@ public class InterviewAuditController {
 	public Integer luYongShenHeBuTongGuo(Integer re_id) {
 		Integer luYongShenHeBuTongGuo = interviewAuditService.luYongShenHeBuTongGuo(re_id);
 		return luYongShenHeBuTongGuo;
+		
+	}
+	@PostMapping("/luYongTongGuo")
+	public Integer luYongShenHeTongGuo(Resume resume) {
+		Integer luYongShenHeTongGuo = interviewAuditService.luYongShenHeTongGuo(resume);
+		return luYongShenHeTongGuo;
 		
 	}
 }

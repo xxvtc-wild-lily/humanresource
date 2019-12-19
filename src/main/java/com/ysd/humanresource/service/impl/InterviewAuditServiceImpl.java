@@ -1,18 +1,24 @@
 package com.ysd.humanresource.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ysd.humanresource.dao.InterviewAuditMapper;
+import com.ysd.humanresource.dao.PositionMapper;
 import com.ysd.humanresource.entity.InterviewAudit;
 import com.ysd.humanresource.entity.Pagination;
+import com.ysd.humanresource.entity.Resume;
 import com.ysd.humanresource.service.InterviewAuditService;
 @Service
 public class InterviewAuditServiceImpl implements InterviewAuditService {
 	@Autowired
 	private InterviewAuditMapper interviewAuditMapper;
+	@Autowired
+	private PositionMapper positionMapper;
 	@Override
 	public Pagination<InterviewAudit> selectInterviewAuditAndResume(Pagination<InterviewAudit> pag) {
 		List<InterviewAudit> selectResumeInterviewAudit = interviewAuditMapper.selectResumeInterviewAudit(pag);
@@ -52,6 +58,25 @@ public class InterviewAuditServiceImpl implements InterviewAuditService {
 		pag.setRows(selectResumeInterviewAudit);
 		pag.setTotal(selectResumeInterviewAuditCount);
 		return pag;
+	}
+	
+	@Override
+	public Integer luYongShenHeTongGuo(Resume resume) {
+		Date date = new Date();
+	    String str = "yyyMMdd";
+	    SimpleDateFormat sdf = new SimpleDateFormat(str);
+	    String t=sdf.format(date);
+	    int d=(int)((Math.random()*9+1)*1000);
+	    String td=t+d;
+	    resume.setRe_ext3(td);
+	    Integer selectPosID = positionMapper.selectPosID(resume.getRe_position());
+	    Integer selectEmpIdByName = positionMapper.selectEmpIdByName(resume.getRe_ext1());
+	    resume.setRe_ext4(selectEmpIdByName);
+	    resume.setRe_ext2(selectPosID);
+	    interviewAuditMapper.deleteInterviewAuditByReId(resume.getRe_id());
+	    interviewAuditMapper.deleteResumeByReId(resume.getRe_id());
+		Integer shenHeTongGuo = interviewAuditMapper.shenHeTongGuo(resume);
+		return shenHeTongGuo;
 	}
 
 }
